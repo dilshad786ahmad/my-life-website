@@ -3,7 +3,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { motion, AnimatePresence } from "framer-motion";
 import { Sparkles, Edit, Save, Plus, Trash2, Layout, Image as ImageIcon, BarChart3, ChevronRight, X, Download } from "lucide-react";
-import { GitHub as Github } from "../components/BrandIcons";
+
 
 const AdminAbout = () => {
   const [activeTab, setActiveTab] = useState("hero"); // "hero", "stats", "images"
@@ -258,8 +258,7 @@ const AdminAbout = () => {
                     </div>
                   </div>
                   <div className="space-y-2">
-                    <label className="text-[10px] font-bold text-gray-500 uppercase px-1 flex items-center gap-2"><Github className="w-3 h-3"/> GitHub Repo</label>
-                    <input type="text" value={heroForm.githubLink} onChange={e => setHeroForm({...heroForm, githubLink: e.target.value})} className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 outline-none focus:ring-2 focus:ring-orange-500/50 transition-all" />
+
                   </div>
                 </div>
                 <div className="flex justify-end pt-4">

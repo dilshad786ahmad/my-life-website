@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Mail, Lock, Home, Sparkles, ArrowRight, Eye, EyeOff } from "lucide-react";
-import { GitHub } from "../components/BrandIcons";
+
 import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import { useAuth } from "../context/AuthContext";

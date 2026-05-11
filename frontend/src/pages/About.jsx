@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Team from "./our_team";
 import { Download, ExternalLink, Sparkles, LogIn, MessageCircle, X, AlertCircle } from "lucide-react";
 import Breadcrumb from "../components/Breadcrumb";
-import { GitHub } from "../components/BrandIcons";
+
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";

@@ -1,6 +1,6 @@
 import React from "react";
 import { Mail, ArrowRight, Briefcase, Share2, Users, Camera } from "lucide-react";
-import { GitHub, Twitter, Linkedin, Instagram } from "./BrandIcons";
+import { Twitter, Linkedin, Instagram } from "./BrandIcons";
 import { NavLink } from "react-router-dom";
 
 export default function Footer() {
@@ -30,7 +30,7 @@ export default function Footer() {
             </p>
 
             <div className="flex gap-4">
-              {[GitHub, Twitter, Linkedin, Instagram].map((Icon, i) => (
+              {[Twitter, Linkedin, Instagram].map((Icon, i) => (
                 <a
                   key={i}
                   href="#"

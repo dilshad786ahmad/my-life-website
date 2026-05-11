@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Mail, Lock, User, Phone, Globe, Home, Sparkles, ArrowRight, ShieldCheck, RefreshCw, CheckCircle, Eye, EyeOff } from "lucide-react";
-import { GitHub } from "../components/BrandIcons";
+
 import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useAuth } from "../context/AuthContext";
