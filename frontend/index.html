@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/jpeg" href="/website-logo.jpeg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="DevVision - Professional web development, UI/UX design, and digital solutions tailored to your business needs." />
+    <title>DevVision – Digital Excellence</title>
+
+    <!-- Preload LCP Image -->
+
+
+    <!-- Preconnect to speed up API & font requests -->
+    <link rel="preconnect" href="http://localhost:5000" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://images.unsplash.com" />
+
+    <!-- Load fonts with display=swap to prevent FOIT and reduce CLS -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap" rel="stylesheet" />
+
+    <!-- Prevent render-blocking by using display=swap -->
+    <style>
+      /* Ensure page background matches app to prevent white flash */
+      html, body, #root { background-color: #050505; margin: 0; padding: 0; min-height: 100vh; }
+      /* Reduce CLS for animated elements */
+      * { box-sizing: border-box; }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- Added defer to script tag to remove render-blocking -->
+    <script type="module" defer src="/src/main.jsx"></script>
+  </body>
+</html>

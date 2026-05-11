@@ -1,0 +1,98 @@
+@import "tailwindcss";
+
+:root {
+  /* Default values for Dark mode */
+  --toast-bg: #0a0a0a;
+  --toast-color: #ffffff;
+  --toast-border: rgba(255,255,255,0.1);
+  --scroll-track: #050505;
+}
+
+.light-mode {
+  /* Invert core colors */
+  --color-white: #050505;
+  --color-black: #ffffff;
+  
+  /* Darken grays for better readability */
+  --color-gray-200: #6b7280;
+  --color-gray-300: #4b5563;
+  --color-gray-400: #374151;
+  --color-gray-500: #111827;
+  --color-gray-600: #9ca3af;
+  --color-gray-700: #d1d5db;
+
+  /* Toaster values for Light mode */
+  --toast-bg: #ffffff;
+  --toast-color: #050505;
+  --toast-border: rgba(0,0,0,0.1);
+  --scroll-track: #f8fafc;
+}
+
+/* OVERRIDES FOR HARDCODED DARK COLORS IN LIGHT MODE */
+.light-mode .bg-\[\#050505\] { background-color: #f8fafc !important; }
+.light-mode .bg-\[\#0a0a0a\] { background-color: #ffffff !important; }
+.light-mode .bg-\[\#080808\] { background-color: #ffffff !important; }
+.light-mode .bg-\[\#0d0d0d\] { background-color: #f1f5f9 !important; }
+.light-mode .bg-\[\#111\] { background-color: #e2e8f0 !important; }
+
+/* Backgrounds with Opacity */
+.light-mode .bg-\[\#050505\]\/80 { background-color: rgba(248, 250, 252, 0.8) !important; }
+.light-mode .bg-\[\#0a0a0a\]\/60 { background-color: rgba(255, 255, 255, 0.6) !important; }
+.light-mode .bg-\[\#0a0a0a\]\/50 { background-color: rgba(255, 255, 255, 0.5) !important; }
+.light-mode .bg-\[\#0d0d0d\]\/90 { background-color: rgba(241, 245, 249, 0.9) !important; }
+
+/* Gradients */
+.light-mode .from-\[\#050505\]\/40 { --tw-gradient-from: rgba(248, 250, 252, 0.4) var(--tw-gradient-from-position) !important; }
+.light-mode .via-\[\#050505\]\/60 { --tw-gradient-via: rgba(248, 250, 252, 0.6) var(--tw-gradient-via-position) !important; }
+.light-mode .to-\[\#050505\] { --tw-gradient-to: rgba(248, 250, 252, 1) var(--tw-gradient-to-position) !important; }
+
+html {
+  scroll-behavior: smooth;
+}
+
+.light-mode body {
+  background-color: #f8fafc;
+  color: #050505;
+}
+
+/* Custom Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--scroll-track);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #f97316; /* Theme Orange */
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ea580c;
+}
+
+/* Firefox Support */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #f97316 var(--scroll-track);
+}
+
+/* Fix Autofill Background Color in Dark Mode */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active{
+    -webkit-box-shadow: 0 0 0 30px #0a0a0a inset !important;
+    -webkit-text-fill-color: white !important;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+/* Hide Default Browser Password Reveal Icon */
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear,
+input[type="password"]::-webkit-credentials-auto-fill-button {
+  display: none !important;
+}
