@@ -8,13 +8,25 @@ export default defineConfig({
   build: {
     rollupOptions: {
       output: {
-        manualChunks: {
-          // Split heavy libraries into separate chunks
-          'vendor-react':   ['react', 'react-dom', 'react-router-dom'],
-          'vendor-motion':  ['framer-motion'],
-          'vendor-icons':   ['lucide-react'],
-          'vendor-axios':   ['axios'],
-          'vendor-google':  ['@react-oauth/google'],
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            if (id.includes('react') || id.includes('react-dom') || id.includes('react-router-dom')) {
+              return 'vendor-react';
+            }
+            if (id.includes('framer-motion')) {
+              return 'vendor-motion';
+            }
+            if (id.includes('lucide-react')) {
+              return 'vendor-icons';
+            }
+            if (id.includes('axios')) {
+              return 'vendor-axios';
+            }
+            if (id.includes('@react-oauth/google')) {
+              return 'vendor-google';
+            }
+            return 'vendor';
+          }
         }
       }
     },
