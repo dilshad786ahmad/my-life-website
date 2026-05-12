@@ -22,7 +22,7 @@ const AdminProjects = () => {
   const fetchData = async () => {
     setLoading(true);
     try {
-      const res = await axios.get("http://localhost:5000/api/projectspage");
+      const res = await axios.get("https://my-life-website.onrender.com/api/projectspage");
       const data = res.data.data;
       setContent(data);
       if (data) {
@@ -44,7 +44,7 @@ const AdminProjects = () => {
     e.preventDefault();
     setIsUpdating(true);
     try {
-      await axios.put("http://localhost:5000/api/projectspage/header", headerForm, { withCredentials: true });
+      await axios.put("https://my-life-website.onrender.com/api/projectspage/header", headerForm, { withCredentials: true });
       toast.success("Header updated!");
       fetchData();
     } catch (error) {
@@ -61,7 +61,7 @@ const AdminProjects = () => {
     else newProjects.push(projectModal.data);
 
     try {
-      await axios.put("http://localhost:5000/api/projectspage/items", { projects: newProjects }, { withCredentials: true });
+      await axios.put("https://my-life-website.onrender.com/api/projectspage/items", { projects: newProjects }, { withCredentials: true });
       toast.success("Portfolio synchronized!");
       setProjectModal({ ...projectModal, isOpen: false });
       fetchData();
@@ -74,7 +74,7 @@ const AdminProjects = () => {
     if (!window.confirm("Delete project?")) return;
     const newProjects = projects.filter((_, i) => i !== index);
     try {
-      await axios.put("http://localhost:5000/api/projectspage/items", { projects: newProjects }, { withCredentials: true });
+      await axios.put("https://my-life-website.onrender.com/api/projectspage/items", { projects: newProjects }, { withCredentials: true });
       toast.success("Project removed!");
       fetchData();
     } catch (error) {
@@ -228,7 +228,7 @@ const AdminProjects = () => {
                                     const data = new FormData();
                                     data.append("image", file);
                                     try {
-                                        const res = await axios.post("http://localhost:5000/api/projectdetails/upload", data, {
+                                        const res = await axios.post("https://my-life-website.onrender.com/api/projectdetails/upload", data, {
                                             headers: { "Content-Type": "multipart/form-data" },
                                             withCredentials: true
                                         });

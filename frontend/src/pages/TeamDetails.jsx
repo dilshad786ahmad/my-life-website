@@ -27,7 +27,7 @@ const TeamDetails = () => {
 
         const fetchMember = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/api/team/${id}`);
+                const response = await axios.get(`https://my-life-website.onrender.com/api/team/${id}`);
                 setMember(response.data);
             } catch (error) {
                 console.error("Error fetching team member details:", error);

@@ -31,7 +31,7 @@ const AdminServiceDetails = () => {
   useEffect(() => {
     const fetchDetails = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/servicedetails/${serviceId}`);
+        const res = await axios.get(`https://my-life-website.onrender.com/api/servicedetails/${serviceId}`);
         if (res.data.data) {
           setFormData(res.data.data);
           setImagePreview(res.data.data.mainImage || "");
@@ -55,7 +55,7 @@ const AdminServiceDetails = () => {
     e.preventDefault();
     setIsUpdating(true);
     try {
-      await axios.post(`http://localhost:5000/api/servicedetails/${serviceId}`, formData, { withCredentials: true });
+      await axios.post(`https://my-life-website.onrender.com/api/servicedetails/${serviceId}`, formData, { withCredentials: true });
       toast.success("Service Details Updated! 🚀");
     } catch (error) {
       toast.error("Failed to update details");

@@ -51,7 +51,7 @@ export default function SignIn() {
   const handleGoogleSuccess = async (credentialResponse) => {
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/auth/google",
+        "https://my-life-website.onrender.com/api/auth/google",
         { credential: credentialResponse.credential },
         { withCredentials: true }
       );
@@ -92,7 +92,7 @@ export default function SignIn() {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/auth/signin", 
+        "https://my-life-website.onrender.com/api/auth/signin", 
         formData,
         { withCredentials: true }
       );

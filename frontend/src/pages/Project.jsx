@@ -26,7 +26,7 @@ export default function FeaturedProjects() {
   const fetchData = async () => {
     try {
       if (firstLoad) setLoading(true);
-      const res = await axios.get(`http://localhost:5000/api/projectspage?search=${search}&category=${category}&sort=${sort}`);
+      const res = await axios.get(`https://my-life-website.onrender.com/api/projectspage?search=${search}&category=${category}&sort=${sort}`);
       setContent(res.data.data);
       setLoading(false);
       setFirstLoad(false);
@@ -190,7 +190,7 @@ export default function FeaturedProjects() {
                         transition={{ duration: 0.4 }}
                         className="group bg-white/[0.03] rounded-[2.5rem] border border-white/10 overflow-hidden shadow-2xl flex flex-col"
                     >
-                        <div className="relative aspect-[4/3] overflow-hidden">
+                        <div className="relative aspect-video overflow-hidden">
                             <img
                                 src={`${project.image}${project.image.includes('?') ? '&' : '?'}auto=format&fit=crop&q=80&w=600&fm=webp`}
                                 loading="lazy"
@@ -212,7 +212,7 @@ export default function FeaturedProjects() {
                             )}
                         </div>
 
-                        <div className="p-8 flex flex-col flex-grow">
+                        <div className="p-5 flex flex-col flex-grow">
                             <div className="flex gap-2 mb-4 flex-wrap">
                                 {project.tags?.slice(0, 3).map((tag, i) => (
                                     <span key={i} className="text-[9px] font-black uppercase tracking-widest bg-white/5 border border-white/10 text-gray-500 px-3 py-1 rounded-lg">
@@ -224,7 +224,7 @@ export default function FeaturedProjects() {
                                 <span className="w-1.5 h-1.5 rounded-full bg-orange-500"></span>
                                 <span className="text-[10px] font-black uppercase tracking-[0.2em] text-orange-500/80">{project.category}</span>
                             </div>
-                            <h3 className="text-2xl font-black text-white mb-3 tracking-tight group-hover:text-orange-400 transition-colors">
+                            <h3 className="text-xl md:text-xl lg:text-2xl font-black text-white mb-3 tracking-tight group-hover:text-orange-400 transition-colors">
                                 {project.title}
                             </h3>
                             <p className="text-gray-500 text-sm leading-relaxed mb-8 flex-grow font-light">
@@ -233,7 +233,7 @@ export default function FeaturedProjects() {
                             
                             <button 
                                 onClick={() => handleViewProject(project._id)}
-                                className="w-full bg-white/5 border border-white/10 text-white py-4 rounded-2xl font-black text-[10px] uppercase tracking-[0.2em] transition-all hover:bg-orange-500 hover:border-orange-500 hover:shadow-[0_10px_25px_rgba(249,115,22,0.4)]"
+                                className="w-full bg-white/5 border border-white/10 text-white py-3 md:py-3 lg:py-4 rounded-2xl font-black text-[10px] uppercase tracking-[0.2em] transition-all hover:bg-orange-500 hover:border-orange-500 hover:shadow-[0_10px_25px_rgba(249,115,22,0.4)]"
                             >
                                 View Project
                             </button>

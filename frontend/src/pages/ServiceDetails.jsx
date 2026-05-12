@@ -26,7 +26,7 @@ export default function ServiceDetails() {
   useEffect(() => {
     const fetchDetails = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/servicedetails/${serviceId}`);
+        const res = await axios.get(`https://my-life-website.onrender.com/api/servicedetails/${serviceId}`);
         setDetails(res.data.data);
       } catch (error) {
         console.error("Error fetching service details:", error);
@@ -138,7 +138,7 @@ export default function ServiceDetails() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1, duration: 0.6 }}
-                className="group bg-[#0d0d0d]/40 border border-white/5 p-12 rounded-[3rem] shadow-2xl hover:border-orange-500/40 transition-all duration-500 text-left relative overflow-hidden backdrop-blur-md"
+                className="group bg-[#0d0d0d]/40 border border-white/5 p-6 md:p-6 lg:p-8 rounded-[3rem] shadow-2xl hover:border-orange-500/40 transition-all duration-500 text-left relative overflow-hidden backdrop-blur-md"
               >
                 <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-orange-500 to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700"></div>
                 
@@ -146,7 +146,7 @@ export default function ServiceDetails() {
                   <DynamicIcon name={feature.icon} className="w-10 h-10 text-orange-500 group-hover:text-white transition-colors duration-700" />
                 </div>
                 
-                <h3 className="text-2xl font-black text-white mb-6 tracking-tight italic group-hover:text-orange-500 transition-colors">{feature.title}</h3>
+                <h3 className="text-xl md:text-xl lg:text-2xl font-black text-white mb-6 tracking-tight italic group-hover:text-orange-500 transition-colors">{feature.title}</h3>
                 <p className="text-gray-500 text-base md:text-lg font-light leading-relaxed group-hover:text-gray-300 transition-colors duration-500">
                   {feature.description}
                 </p>

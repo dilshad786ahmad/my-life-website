@@ -16,7 +16,7 @@ const Team = () => {
     useEffect(() => {
         const fetchTeam = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/api/team');
+                const response = await axios.get('https://my-life-website.onrender.com/api/team');
                 setTeam(response.data);
             } catch (error) {
                 console.error("Error fetching team members:", error);
@@ -118,7 +118,7 @@ const Team = () => {
                                 className="group rounded-3xl overflow-hidden transition-all duration-500 backdrop-blur-xl flex flex-col text-left bg-[#0a0a0a] hover:shadow-[0_15px_40px_-10px_rgba(59,130,246,0.15)]"
                             >
                                 {/* Image */}
-                                <div className="overflow-hidden h-72 relative">
+                                <div className="overflow-hidden h-56 relative">
                                     <div className="absolute inset-0 z-10 opacity-80 group-hover:opacity-60 transition-opacity bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent"></div>
                                     <img
                                         src={`${member.image}${member.image.includes('?') ? '&' : '?'}auto=format&fit=crop&q=80&w=600&fm=webp`}
@@ -144,7 +144,7 @@ const Team = () => {
                                 </div>
 
                                 {/* Content */}
-                                <div className="p-8 flex flex-col flex-grow relative z-20">
+                                <div className="p-5 flex flex-col flex-grow relative z-20">
                                     <h3 className="text-2xl font-bold mb-1 transition-colors text-white group-hover:text-blue-400">
                                         {member.name}
                                     </h3>

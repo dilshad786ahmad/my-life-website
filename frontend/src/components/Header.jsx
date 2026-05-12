@@ -47,7 +47,7 @@ export default function Navbar() {
 
   return (
     <div className="fixed top-6 left-0 w-full z-50 px-6">
-      <div className={`max-w-7xl mx-auto bg-[#0a0a0a]/60 backdrop-blur-2xl border border-white/10 rounded-3xl px-6 py-4 flex items-center justify-between transition-all duration-300 ${isDarkMode ? 'shadow-[0_8px_32px_0_rgba(0,0,0,0.8)]' : 'shadow-none'}`}>
+      <div className={`max-w-7xl mx-auto bg-[#0a0a0a]/60 backdrop-blur-2xl border border-white/10 rounded-3xl px-4 lg:px-4 py-3 lg:py-3 flex items-center justify-between transition-all duration-300 ${isDarkMode ? 'shadow-[0_8px_32px_0_rgba(0,0,0,0.8)]' : 'shadow-none'}`}>
 
         {/* Logo */}
         <NavLink to="/" className="flex items-center gap-2">
@@ -60,7 +60,7 @@ export default function Navbar() {
         </NavLink>
 
         {/* Desktop Menu */}
-        <ul className="hidden xl:flex gap-4 items-center">
+        <ul className="hidden lg:flex gap-2.5 lg:gap-2.5 xl:gap-4 items-center">
           {links.map((item) => (
             <NavLink
               key={item.name}
@@ -86,7 +86,7 @@ export default function Navbar() {
         </ul>
 
         {/* Right Section */}
-        <div className="hidden xl:flex items-center gap-6">
+        <div className="hidden lg:flex items-center gap-3 lg:gap-3 xl:gap-6">
           {user ? (
             <div className="flex items-center gap-4 border-l border-white/10 pl-6">
               <div className="text-right leading-tight">
@@ -143,7 +143,7 @@ export default function Navbar() {
         </div>
 
         {/* Mobile Toggle Button */}
-        <div className="xl:hidden flex items-center gap-4">
+        <div className="lg:hidden flex items-center gap-4">
           <button
             onClick={() => setOpen(!open)}
             className="w-11 h-11 flex items-center justify-center bg-white/5 border border-white/10 rounded-xl text-white relative z-[70] hover:bg-white/10 transition-colors"

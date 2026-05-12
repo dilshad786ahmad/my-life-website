@@ -76,7 +76,7 @@ export default function AdminDashboard() {
 
     try {
       setLoading(true);
-      const response = await axios.get('http://localhost:5000/api/admin/', {
+      const response = await axios.get('https://my-life-website.onrender.com/api/admin/', {
         headers: { Authorization: `Bearer ${token}` },
         withCredentials: true,
         params: {
@@ -114,7 +114,7 @@ export default function AdminDashboard() {
     if (window.confirm("Are you sure you want to permanently delete this user record?")) {
       try {
         const token = localStorage.getItem("token");
-        await axios.delete(`http://localhost:5000/api/admin/${id}`, {
+        await axios.delete(`https://my-life-website.onrender.com/api/admin/${id}`, {
           headers: { Authorization: `Bearer ${token}` },
           withCredentials: true
         });
@@ -126,7 +126,7 @@ export default function AdminDashboard() {
   const handleEditSubmit = async () => {
     try {
       const token = localStorage.getItem("token");
-      await axios.put(`http://localhost:5000/api/admin/${editModalData.id}`, {
+      await axios.put(`https://my-life-website.onrender.com/api/admin/${editModalData.id}`, {
         query: editModalData.query,
         leadStatus: editModalData.leadStatus
       }, {

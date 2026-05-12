@@ -19,7 +19,7 @@ export default function About() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/aboutpage");
+        const res = await axios.get("https://my-life-website.onrender.com/api/aboutpage");
         setContent(res.data.data);
       } catch (error) {
         console.error("Error fetching about content:", error);
@@ -98,7 +98,7 @@ export default function About() {
                 <SkeletonBase className="h-12 md:h-16 rounded-2xl w-3/4" />
             </div>
           ) : (
-            <h2 className="text-5xl md:text-7xl font-black text-white mb-8 tracking-tighter leading-[1.1]">
+            <h2 className="text-4xl md:text-5xl lg:text-7xl font-black text-white mb-8 tracking-tighter leading-[1.1]">
                 {hero.heading}
             </h2>
           )}
@@ -107,7 +107,7 @@ export default function About() {
             <TextSkeleton lines={3} className="mb-12" />
           ) : (
             <>
-                <p className="text-gray-400 text-lg md:text-xl font-light leading-relaxed mb-8 max-w-xl">
+                <p className="text-gray-400 text-base md:text-lg lg:text-xl font-light leading-relaxed mb-8 max-w-xl">
                     {hero.subheading}
                 </p>
                 <p className="text-gray-500 text-base leading-relaxed mb-12 max-w-lg">
@@ -127,7 +127,7 @@ export default function About() {
                   download 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className="group relative overflow-hidden px-8 py-4 rounded-2xl bg-orange-500 text-white font-black text-xs uppercase tracking-widest shadow-[0_10px_30px_rgba(249,115,22,0.3)] hover:shadow-[0_15px_40px_rgba(249,115,22,0.4)] transition-all duration-300 hover:-translate-y-1 active:translate-y-0"
+                  className="group relative overflow-hidden px-6 md:px-7 lg:px-8 py-3.5 md:py-3.5 lg:py-4 rounded-2xl bg-orange-500 text-white font-black text-[10px] lg:text-xs uppercase tracking-widest shadow-[0_10px_30px_rgba(249,115,22,0.3)] hover:shadow-[0_15px_40px_rgba(249,115,22,0.4)] transition-all duration-300 hover:-translate-y-1 active:translate-y-0"
                 >
                   <span className="relative z-10 flex items-center gap-2">
                     Resume Download <Download className="w-4 h-4" />
@@ -136,7 +136,7 @@ export default function About() {
 
                 <button 
                   onClick={handleConnect}
-                  className="group px-8 py-4 rounded-2xl bg-white/5 border border-white/10 text-white font-black text-xs uppercase tracking-widest hover:bg-white/10 transition-all duration-300 flex items-center gap-2 backdrop-blur-md hover:border-white/20"
+                  className="group px-6 md:px-7 lg:px-8 py-3.5 md:py-3.5 lg:py-4 rounded-2xl bg-white/5 border border-white/10 text-white font-black text-[10px] lg:text-xs uppercase tracking-widest hover:bg-white/10 transition-all duration-300 flex items-center gap-2 backdrop-blur-md hover:border-white/20"
                 >
                   Connect With Me <MessageCircle className="w-4 h-4 text-orange-500 group-hover:scale-110 transition-transform" />
                 </button>
@@ -155,7 +155,7 @@ export default function About() {
         >
           <div className="absolute -inset-4 bg-gradient-to-tr from-orange-500/20 via-blue-500/10 to-transparent rounded-[3rem] blur-2xl opacity-50"></div>
           
-          <div className="relative w-full h-[500px] md:h-[600px] rounded-[2.5rem] overflow-hidden group border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] bg-[#0a0a0a]">
+          <div className="relative w-full h-[400px] md:h-[500px] lg:h-[600px] rounded-[2.5rem] overflow-hidden group border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] bg-[#0a0a0a]">
             {loading ? (
                 <div className="w-full h-full bg-white/5 animate-pulse"></div>
             ) : (

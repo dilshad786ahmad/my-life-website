@@ -53,7 +53,7 @@ const AdminTeam = () => {
 
     const fetchTeam = async () => {
         try {
-            const response = await axios.get('http://localhost:5000/api/team');
+            const response = await axios.get('https://my-life-website.onrender.com/api/team');
             setTeam(response.data);
         } catch (error) {
             toast.error("Failed to fetch team members");
@@ -190,13 +190,13 @@ const AdminTeam = () => {
 
         try {
             if (editingId) {
-                await axios.put(`http://localhost:5000/api/team/${editingId}`, data, { 
+                await axios.put(`https://my-life-website.onrender.com/api/team/${editingId}`, data, { 
                     withCredentials: true,
                     headers: { 'Content-Type': 'multipart/form-data' }
                 });
                 toast.success("Member updated successfully");
             } else {
-                await axios.post('http://localhost:5000/api/team', data, { 
+                await axios.post('https://my-life-website.onrender.com/api/team', data, { 
                     withCredentials: true,
                     headers: { 'Content-Type': 'multipart/form-data' }
                 });
@@ -219,7 +219,7 @@ const AdminTeam = () => {
     const handleDelete = async (id) => {
         if (window.confirm("Are you sure you want to delete this member?")) {
             try {
-                await axios.delete(`http://localhost:5000/api/team/${id}`, { withCredentials: true });
+                await axios.delete(`https://my-life-website.onrender.com/api/team/${id}`, { withCredentials: true });
                 toast.success("Member deleted successfully");
                 fetchTeam();
             } catch (error) {

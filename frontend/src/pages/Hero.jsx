@@ -72,7 +72,7 @@ export default function Home() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/homepage");
+        const res = await axios.get("https://my-life-website.onrender.com/api/homepage");
         setContent(res.data.data);
         setLoading(false);
       } catch (error) {
@@ -159,7 +159,7 @@ export default function Home() {
                 <SkeletonBase className="h-12 md:h-16 rounded-2xl w-1/2" />
               </div>
             ) : (
-              <h1 className="text-4xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-gray-500 mb-8 tracking-tight leading-[1.1]">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-gray-500 mb-8 tracking-tight leading-[1.1]">
                 <TypingText text={hero.heading} />
               </h1>
             )}
@@ -167,7 +167,7 @@ export default function Home() {
             {loading ? (
               <SkeletonBase className="h-20 rounded-2xl w-full mb-12" />
             ) : (
-              <p className="text-gray-400 text-base md:text-xl max-w-xl leading-relaxed font-light mb-12">
+              <p className="text-gray-400 text-base md:text-lg lg:text-xl max-w-xl leading-relaxed font-light mb-12">
                 {hero.subheading}
               </p>
             )}
@@ -215,19 +215,19 @@ export default function Home() {
             )}
 
             <div className="flex flex-row flex-wrap lg:flex-nowrap gap-3 md:gap-6">
-              <Link to="/projects" className="group bg-orange-500 text-white px-5 md:px-10 py-4 md:py-4.5 rounded-2xl font-black text-[10px] md:text-xs uppercase tracking-widest transition-all duration-300 hover:bg-orange-400 shadow-[0_15px_35px_rgba(249,115,22,0.4)] flex items-center gap-2 md:gap-3 active:scale-95 flex-1 md:flex-none justify-center whitespace-nowrap">
+              <Link to="/projects" className="group bg-orange-500 text-white px-5 md:px-7 lg:px-10 py-4 md:py-3.5 lg:py-4.5 rounded-2xl font-black text-[10px] lg:text-xs uppercase tracking-widest transition-all duration-300 hover:bg-orange-400 shadow-[0_15px_35px_rgba(249,115,22,0.4)] flex items-center gap-2 md:gap-3 active:scale-95 flex-1 md:flex-none justify-center whitespace-nowrap">
               View Projects <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
-
-              <Link to="/Prices" className="bg-white/5 border border-white/10 text-white px-5 md:px-10 py-4 md:py-4.5 rounded-2xl font-black text-[10px] md:text-xs uppercase tracking-widest transition-all duration-300 hover:bg-white/10 backdrop-blur-md active:scale-95 flex-1 md:flex-none justify-center whitespace-nowrap">
+              
+              <Link to="/Prices" className="bg-white/5 border border-white/10 text-white px-5 md:px-7 lg:px-10 py-4 md:py-3.5 lg:py-4.5 rounded-2xl font-black text-[10px] lg:text-xs uppercase tracking-widest transition-all duration-300 hover:bg-white/10 backdrop-blur-md active:scale-95 flex-1 md:flex-none justify-center whitespace-nowrap">
                 affordable Pricing 
               </Link>
             </div>
           </motion.div>
 
           {/* RIGHT IMAGE STACK - ANIMATED */}
-          <div className="flex justify-center items-center relative h-[300px] md:h-[600px] w-full [perspective:2000px] mt-10 md:mt-0">
-            <div className="relative w-full max-w-[260px] md:max-w-[450px] aspect-[4/5] md:aspect-auto md:h-full">
+          <div className="flex justify-center items-center relative h-[300px] md:h-[500px] lg:h-[600px] w-full [perspective:2000px] mt-10 md:mt-0">
+            <div className="relative w-full max-w-[260px] md:max-w-[380px] lg:max-w-[450px] aspect-[4/5] md:aspect-auto md:h-full">
                 
                 {loading ? (
                     <HeroStackSkeleton />
@@ -333,7 +333,7 @@ export default function Home() {
               borderColor: { duration: 4, repeat: Infinity, ease: "linear" }
             }}
             viewport={{ once: true }}
-            className="group bg-white/[0.02] p-8 rounded-[2.5rem] border border-white/10 backdrop-blur-xl hover:bg-white/[0.04] transition-all duration-500 hover:-translate-y-3 hover:shadow-[0_20px_50px_-10px_rgba(249,115,22,0.2)] flex flex-col"
+            className="group bg-white/[0.02] p-5 rounded-[2.5rem] border border-white/10 backdrop-blur-xl hover:bg-white/[0.04] transition-all duration-500 hover:-translate-y-3 hover:shadow-[0_20px_50px_-10px_rgba(249,115,22,0.2)] flex flex-col"
           >
             <div className="w-16 h-16 flex items-center justify-center bg-white/5 border border-white/10 rounded-2xl mb-8 group-hover:scale-110 group-hover:bg-orange-500/10 group-hover:border-orange-500/20 transition-all duration-500">
               <div className="text-orange-500">

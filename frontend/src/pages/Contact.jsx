@@ -58,7 +58,7 @@ export default function SpecializedSolutions() {
   useEffect(() => {
     const fetchContent = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/contactpage");
+        const res = await axios.get("https://my-life-website.onrender.com/api/contactpage");
         setPageContent(res.data.data);
       } catch (error) {
         console.error("Failed to fetch page content:", error);
@@ -86,7 +86,7 @@ export default function SpecializedSolutions() {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/contact",
+        "https://my-life-website.onrender.com/api/contact",
         formData,
         { withCredentials: true }
       );

@@ -20,7 +20,7 @@ export default function ProjectDetails() {
   useEffect(() => {
     const fetchDetails = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/projectdetails/${projectId}`);
+        const res = await axios.get(`https://my-life-website.onrender.com/api/projectdetails/${projectId}`);
         setDetails(res.data.data);
         setActiveImage(res.data.data.mainImage);
       } catch (error) {
@@ -39,7 +39,7 @@ export default function ProjectDetails() {
     }
     setIsSubmittingReview(true);
     try {
-        const res = await axios.post(`http://localhost:5000/api/projectdetails/review`, {
+        const res = await axios.post(`https://my-life-website.onrender.com/api/projectdetails/review`, {
             projectId,
             ...reviewForm
         });

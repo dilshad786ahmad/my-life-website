@@ -25,7 +25,7 @@ export const AuthProvider = ({ children }) => {
   const logout = async () => {
     try {
       // 1. Backend call with credentials for cookies
-      await axios.post("http://localhost:5000/api/auth/logout", {}, { 
+      await axios.post("https://my-life-website.onrender.com/api/auth/logout", {}, { 
         withCredentials: true 
       });
       

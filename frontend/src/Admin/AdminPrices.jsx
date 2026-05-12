@@ -33,7 +33,7 @@ const AdminPrices = () => {
   const fetchContent = async () => {
     setLoading(true);
     try {
-      const res = await axios.get("http://localhost:5000/api/pricingpage", { withCredentials: true });
+      const res = await axios.get("https://my-life-website.onrender.com/api/pricingpage", { withCredentials: true });
       const content = res.data.data;
       setPageContent(content);
       if(content && content.header) {
@@ -65,7 +65,7 @@ const AdminPrices = () => {
     e.preventDefault();
     setIsUpdatingHeader(true);
     try {
-      await axios.put("http://localhost:5000/api/pricingpage/header", headerForm, { withCredentials: true });
+      await axios.put("https://my-life-website.onrender.com/api/pricingpage/header", headerForm, { withCredentials: true });
       toast.success("Header updated!");
       fetchContent();
     } catch (error) { toast.error("Update failed!"); }
@@ -77,9 +77,9 @@ const AdminPrices = () => {
     try {
       const payload = { ...basicModal.data, features: parseFeatures(basicModal.data.features) };
       if(basicModal.isEdit) {
-        await axios.put(`http://localhost:5000/api/pricingpage/basic/${basicModal.planId}`, payload, { withCredentials: true });
+        await axios.put(`https://my-life-website.onrender.com/api/pricingpage/basic/${basicModal.planId}`, payload, { withCredentials: true });
       } else {
-        await axios.post("http://localhost:5000/api/pricingpage/basic", payload, { withCredentials: true });
+        await axios.post("https://my-life-website.onrender.com/api/pricingpage/basic", payload, { withCredentials: true });
       }
       toast.success("Plan saved!");
       setBasicModal({ ...basicModal, isOpen: false });
@@ -90,7 +90,7 @@ const AdminPrices = () => {
   const handleDeleteBasic = async (id) => {
     if(!window.confirm("Delete this plan?")) return;
     try {
-      await axios.delete(`http://localhost:5000/api/pricingpage/basic/${id}`, { withCredentials: true });
+      await axios.delete(`https://my-life-website.onrender.com/api/pricingpage/basic/${id}`, { withCredentials: true });
       toast.success("Deleted!"); fetchContent();
     } catch(err) { toast.error("Delete failed!"); }
   };
@@ -100,9 +100,9 @@ const AdminPrices = () => {
     try {
       const payload = { ...standardModal.data, features: parseFeatures(standardModal.data.features) };
       if(standardModal.isEdit) {
-        await axios.put(`http://localhost:5000/api/pricingpage/standard/${standardModal.solutionId}`, payload, { withCredentials: true });
+        await axios.put(`https://my-life-website.onrender.com/api/pricingpage/standard/${standardModal.solutionId}`, payload, { withCredentials: true });
       } else {
-        await axios.post("http://localhost:5000/api/pricingpage/standard", payload, { withCredentials: true });
+        await axios.post("https://my-life-website.onrender.com/api/pricingpage/standard", payload, { withCredentials: true });
       }
       toast.success("Solution saved!");
       setStandardModal({ ...standardModal, isOpen: false });
@@ -113,7 +113,7 @@ const AdminPrices = () => {
   const handleDeleteStandard = async (id) => {
     if(!window.confirm("Delete this solution?")) return;
     try {
-      await axios.delete(`http://localhost:5000/api/pricingpage/standard/${id}`, { withCredentials: true });
+      await axios.delete(`https://my-life-website.onrender.com/api/pricingpage/standard/${id}`, { withCredentials: true });
       toast.success("Deleted!"); fetchContent();
     } catch(err) { toast.error("Delete failed!"); }
   };
@@ -123,9 +123,9 @@ const AdminPrices = () => {
     try {
       const payload = { ...enterpriseModal.data, features: parseFeatures(enterpriseModal.data.features) };
       if(enterpriseModal.isEdit) {
-        await axios.put(`http://localhost:5000/api/pricingpage/enterprise/${enterpriseModal.systemId}`, payload, { withCredentials: true });
+        await axios.put(`https://my-life-website.onrender.com/api/pricingpage/enterprise/${enterpriseModal.systemId}`, payload, { withCredentials: true });
       } else {
-        await axios.post("http://localhost:5000/api/pricingpage/enterprise", payload, { withCredentials: true });
+        await axios.post("https://my-life-website.onrender.com/api/pricingpage/enterprise", payload, { withCredentials: true });
       }
       toast.success("System saved!");
       setEnterpriseModal({ ...enterpriseModal, isOpen: false });
@@ -136,7 +136,7 @@ const AdminPrices = () => {
   const handleDeleteEnterprise = async (id) => {
     if(!window.confirm("Delete this system?")) return;
     try {
-      await axios.delete(`http://localhost:5000/api/pricingpage/enterprise/${id}`, { withCredentials: true });
+      await axios.delete(`https://my-life-website.onrender.com/api/pricingpage/enterprise/${id}`, { withCredentials: true });
       toast.success("Deleted!"); fetchContent();
     } catch(err) { toast.error("Delete failed!"); }
   };

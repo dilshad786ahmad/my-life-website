@@ -14,7 +14,7 @@ export default function DynamicPage() {
     const fetchPage = async () => {
       setLoading(true);
       try {
-        const res = await axios.get(`http://localhost:5000/api/pages/${slug}`);
+        const res = await axios.get(`https://my-life-website.onrender.com/api/pages/${slug}`);
         setPageData(res.data.data);
         setLoading(false);
       } catch (error) {

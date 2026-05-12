@@ -29,7 +29,7 @@ const AdminSkills = () => {
   const fetchData = async () => {
     setLoading(true);
     try {
-      const res = await axios.get("http://localhost:5000/api/skillspage");
+      const res = await axios.get("https://my-life-website.onrender.com/api/skillspage");
       const data = res.data.data;
       setContent(data);
       if (data) {
@@ -53,7 +53,7 @@ const AdminSkills = () => {
     e.preventDefault();
     setIsUpdating(true);
     try {
-      await axios.put("http://localhost:5000/api/skillspage/header", headerForm, { withCredentials: true });
+      await axios.put("https://my-life-website.onrender.com/api/skillspage/header", headerForm, { withCredentials: true });
       toast.success("Header updated!");
       fetchData();
     } catch (error) {
@@ -71,7 +71,7 @@ const AdminSkills = () => {
 
     const endpoint = skillModal.type === "tech" ? "tech" : "soft";
     try {
-      await axios.put(`http://localhost:5000/api/skillspage/${endpoint}`, { skills: newSkills }, { withCredentials: true });
+      await axios.put(`https://my-life-website.onrender.com/api/skillspage/${endpoint}`, { skills: newSkills }, { withCredentials: true });
       toast.success("Skills updated!");
       setSkillModal({ ...skillModal, isOpen: false });
       fetchData();
@@ -86,7 +86,7 @@ const AdminSkills = () => {
     const newSkills = currentSkills.filter((_, i) => i !== index);
     const endpoint = type === "tech" ? "tech" : "soft";
     try {
-      await axios.put(`http://localhost:5000/api/skillspage/${endpoint}`, { skills: newSkills }, { withCredentials: true });
+      await axios.put(`https://my-life-website.onrender.com/api/skillspage/${endpoint}`, { skills: newSkills }, { withCredentials: true });
       toast.success("Skill deleted!");
       fetchData();
     } catch (error) {
@@ -98,7 +98,7 @@ const AdminSkills = () => {
     e.preventDefault();
     setIsUpdating(true);
     try {
-      await axios.put("http://localhost:5000/api/skillspage/misc", miscForm, { withCredentials: true });
+      await axios.put("https://my-life-website.onrender.com/api/skillspage/misc", miscForm, { withCredentials: true });
       toast.success("CTA & Code updated!");
       fetchData();
     } catch (error) {

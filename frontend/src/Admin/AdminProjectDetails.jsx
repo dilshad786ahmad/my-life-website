@@ -40,7 +40,7 @@ export default function AdminProjectDetails() {
   useEffect(() => {
     const fetchDetails = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/projectdetails/${projectId}`);
+        const res = await axios.get(`https://my-life-website.onrender.com/api/projectdetails/${projectId}`);
         if (res.data.data) {
             setFormData(res.data.data);
         }
@@ -61,7 +61,7 @@ export default function AdminProjectDetails() {
     data.append("image", file);
 
     try {
-      const res = await axios.post("http://localhost:5000/api/projectdetails/upload", data, {
+      const res = await axios.post("https://my-life-website.onrender.com/api/projectdetails/upload", data, {
         headers: { "Content-Type": "multipart/form-data" },
         withCredentials: true
       });
@@ -84,7 +84,7 @@ export default function AdminProjectDetails() {
     e.preventDefault();
     setSaving(true);
     try {
-      await axios.post("http://localhost:5000/api/projectdetails", formData, { withCredentials: true });
+      await axios.post("https://my-life-website.onrender.com/api/projectdetails", formData, { withCredentials: true });
       toast.success("Project Details Synchronized!");
     } catch (error) {
       toast.error("Save failed");

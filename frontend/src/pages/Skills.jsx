@@ -19,7 +19,7 @@ export default function SkillsSection() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/skillspage");
+        const res = await axios.get("https://my-life-website.onrender.com/api/skillspage");
         setContent(res.data.data);
       } catch (error) {
         console.error("Error fetching skills content:", error);
@@ -76,7 +76,7 @@ export default function SkillsSection() {
           {loading ? (
             <div className="h-12 md:h-16 w-3/4 bg-white/5 rounded-2xl animate-pulse mb-6"></div>
           ) : (
-            <h2 className="text-5xl md:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-gray-500 mb-6 tracking-tighter leading-[1.1]">
+            <h2 className="text-4xl md:text-5xl lg:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-gray-500 mb-6 tracking-tighter leading-[1.1]">
                 {header.title}
             </h2>
           )}
@@ -84,7 +84,7 @@ export default function SkillsSection() {
           {loading ? (
             <div className="h-10 w-1/2 bg-white/5 rounded-xl animate-pulse"></div>
           ) : (
-            <p className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed font-light">
+            <p className="text-gray-400 text-base md:text-lg lg:text-xl max-w-2xl mx-auto leading-relaxed font-light">
                 {header.description}
             </p>
           )}
@@ -103,7 +103,7 @@ export default function SkillsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.05 }}
               viewport={{ once: true }}
-              className="group bg-white/[0.02] border border-white/10 rounded-3xl p-8 transition-all duration-500 hover:bg-white/[0.04] hover:border-white/20 backdrop-blur-md hover:-translate-y-2 hover:shadow-[0_20px_50px_-10px_rgba(249,115,22,0.15)] cursor-pointer relative overflow-hidden"
+              className="group bg-white/[0.02] border border-white/10 rounded-3xl p-6 transition-all duration-500 hover:bg-white/[0.04] hover:border-white/20 backdrop-blur-md hover:-translate-y-2 hover:shadow-[0_20px_50px_-10px_rgba(249,115,22,0.15)] cursor-pointer relative overflow-hidden"
             >
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-orange-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
               <div className="w-14 h-14 flex items-center justify-center bg-white/5 border border-white/10 rounded-2xl mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-lg">
@@ -153,10 +153,10 @@ export default function SkillsSection() {
             </p>
 
             <div className="flex flex-wrap gap-5">
-              <button className="bg-orange-500 text-white px-8 py-4 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-orange-400 transition-all duration-300 shadow-[0_10px_30px_rgba(249,115,22,0.3)] flex items-center gap-2">
+              <button className="bg-orange-500 text-white px-6 md:px-7 lg:px-8 py-3.5 md:py-3.5 lg:py-4 rounded-2xl font-black text-[10px] lg:text-xs uppercase tracking-widest hover:bg-orange-400 transition-all duration-300 shadow-[0_10px_30px_rgba(249,115,22,0.3)] flex items-center gap-2">
                 Get In Touch <ArrowRight className="w-4 h-4" />
               </button>
-              <button className="bg-white/5 border border-white/10 text-white px-8 py-4 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-white/10 transition-all duration-300 backdrop-blur-md">
+              <button className="bg-white/5 border border-white/10 text-white px-6 md:px-7 lg:px-8 py-3.5 md:py-3.5 lg:py-4 rounded-2xl font-black text-[10px] lg:text-xs uppercase tracking-widest hover:bg-white/10 transition-all duration-300 backdrop-blur-md">
                 Download CV
               </button>
             </div>

@@ -29,7 +29,7 @@ const AdminHome = () => {
   const fetchData = async () => {
     setLoading(true);
     try {
-      const res = await axios.get("http://localhost:5000/api/homepage");
+      const res = await axios.get("https://my-life-website.onrender.com/api/homepage");
       const data = res.data.data;
       setContent(data);
       if (data) {
@@ -59,7 +59,7 @@ const AdminHome = () => {
     e.preventDefault();
     setIsUpdating(true);
     try {
-      await axios.put("http://localhost:5000/api/homepage/hero", heroForm, { withCredentials: true });
+      await axios.put("https://my-life-website.onrender.com/api/homepage/hero", heroForm, { withCredentials: true });
       toast.success("Hero updated!");
       fetchData();
     } catch (error) {
@@ -73,7 +73,7 @@ const AdminHome = () => {
     e.preventDefault();
     setIsUpdating(true);
     try {
-      await axios.put("http://localhost:5000/api/homepage/social", socialLinks, { withCredentials: true });
+      await axios.put("https://my-life-website.onrender.com/api/homepage/social", socialLinks, { withCredentials: true });
       toast.success("Social links updated!");
       fetchData();
     } catch (error) {
@@ -90,7 +90,7 @@ const AdminHome = () => {
     else newCards.push(cardModal.data);
 
     try {
-      await axios.put("http://localhost:5000/api/homepage/cards", { cards: newCards }, { withCredentials: true });
+      await axios.put("https://my-life-website.onrender.com/api/homepage/cards", { cards: newCards }, { withCredentials: true });
       toast.success("Cards updated!");
       setCardModal({ ...cardModal, isOpen: false });
       fetchData();
@@ -103,7 +103,7 @@ const AdminHome = () => {
     if (!window.confirm("Delete card?")) return;
     const newCards = cards.filter((_, i) => i !== index);
     try {
-      await axios.put("http://localhost:5000/api/homepage/cards", { cards: newCards }, { withCredentials: true });
+      await axios.put("https://my-life-website.onrender.com/api/homepage/cards", { cards: newCards }, { withCredentials: true });
       toast.success("Card deleted!");
       fetchData();
     } catch (error) {

@@ -21,7 +21,7 @@ export default function WhatIOffer() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/servicespage");
+        const res = await axios.get("https://my-life-website.onrender.com/api/servicespage");
         setContent(res.data.data);
         setLoading(false);
       } catch (error) {

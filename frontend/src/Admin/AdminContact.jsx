@@ -38,8 +38,8 @@ const AdminContact = () => {
     setLoadingLeads(true);
     try {
       const url = filter 
-        ? `http://localhost:5000/api/contact?status=${filter}` 
-        : `http://localhost:5000/api/contact`;
+        ? `https://my-life-website.onrender.com/api/contact?status=${filter}` 
+        : `https://my-life-website.onrender.com/api/contact`;
       
       const res = await axios.get(url, { withCredentials: true });
       setLeads(res.data.data);
@@ -54,7 +54,7 @@ const AdminContact = () => {
   const fetchContent = async () => {
     setLoadingContent(true);
     try {
-      const res = await axios.get("http://localhost:5000/api/contactpage");
+      const res = await axios.get("https://my-life-website.onrender.com/api/contactpage");
       const content = res.data.data;
       setPageContent(content);
       if(content) {
@@ -80,7 +80,7 @@ const AdminContact = () => {
   // --- LEADS HANDLERS ---
   const handleStatusUpdate = async (id, newStatus) => {
     try {
-      await axios.put(`http://localhost:5000/api/contact/${id}`, 
+      await axios.put(`https://my-life-website.onrender.com/api/contact/${id}`, 
         { status: newStatus }, 
         { withCredentials: true }
       );
@@ -94,7 +94,7 @@ const AdminContact = () => {
   const handleConfirmDelete = async () => {
     if (!deleteModalData) return;
     try {
-      await axios.delete(`http://localhost:5000/api/contact/${deleteModalData}`, { withCredentials: true });
+      await axios.delete(`https://my-life-website.onrender.com/api/contact/${deleteModalData}`, { withCredentials: true });
       toast.success("Lead deleted successfully! 🗑️");
       setDeleteModalData(null); 
       fetchLeads(); 
@@ -108,7 +108,7 @@ const AdminContact = () => {
     e.preventDefault();
     setIsUpdatingMain(true);
     try {
-      await axios.put("http://localhost:5000/api/contactpage/main-text", mainContentForm, { withCredentials: true });
+      await axios.put("https://my-life-website.onrender.com/api/contactpage/main-text", mainContentForm, { withCredentials: true });
       toast.success("Main content updated!");
       fetchContent();
     } catch (error) {
@@ -122,10 +122,10 @@ const AdminContact = () => {
     e.preventDefault();
     try {
       if(cardModal.isEdit) {
-        await axios.put(`http://localhost:5000/api/contactpage/cards/${cardModal.cardId}`, cardModal.data, { withCredentials: true });
+        await axios.put(`https://my-life-website.onrender.com/api/contactpage/cards/${cardModal.cardId}`, cardModal.data, { withCredentials: true });
         toast.success("Card updated!");
       } else {
-        await axios.post("http://localhost:5000/api/contactpage/cards", cardModal.data, { withCredentials: true });
+        await axios.post("https://my-life-website.onrender.com/api/contactpage/cards", cardModal.data, { withCredentials: true });
         toast.success("Card added!");
       }
       setCardModal({ ...cardModal, isOpen: false });
@@ -138,7 +138,7 @@ const AdminContact = () => {
   const handleDeleteCard = async (id) => {
     if(!window.confirm("Are you sure you want to delete this card?")) return;
     try {
-      await axios.delete(`http://localhost:5000/api/contactpage/cards/${id}`, { withCredentials: true });
+      await axios.delete(`https://my-life-website.onrender.com/api/contactpage/cards/${id}`, { withCredentials: true });
       toast.success("Card deleted!");
       fetchContent();
     } catch(err) { toast.error("Failed to delete card!"); }
@@ -148,10 +148,10 @@ const AdminContact = () => {
     e.preventDefault();
     try {
       if(infoModal.isEdit) {
-        await axios.put(`http://localhost:5000/api/contactpage/info/${infoModal.infoId}`, infoModal.data, { withCredentials: true });
+        await axios.put(`https://my-life-website.onrender.com/api/contactpage/info/${infoModal.infoId}`, infoModal.data, { withCredentials: true });
         toast.success("Info updated!");
       } else {
-        await axios.post("http://localhost:5000/api/contactpage/info", infoModal.data, { withCredentials: true });
+        await axios.post("https://my-life-website.onrender.com/api/contactpage/info", infoModal.data, { withCredentials: true });
         toast.success("Info added!");
       }
       setInfoModal({ ...infoModal, isOpen: false });
@@ -164,7 +164,7 @@ const AdminContact = () => {
   const handleDeleteInfo = async (id) => {
     if(!window.confirm("Are you sure you want to delete this info item?")) return;
     try {
-      await axios.delete(`http://localhost:5000/api/contactpage/info/${id}`, { withCredentials: true });
+      await axios.delete(`https://my-life-website.onrender.com/api/contactpage/info/${id}`, { withCredentials: true });
       toast.success("Info deleted!");
       fetchContent();
     } catch(err) { toast.error("Failed to delete info!"); }

@@ -17,7 +17,7 @@ export default function PricingPage() {
   useEffect(() => {
     const fetchContent = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/pricingpage");
+        const res = await axios.get("https://my-life-website.onrender.com/api/pricingpage");
         setContent(res.data.data);
       } catch (error) {
         console.error("Failed to load pricing content", error);
