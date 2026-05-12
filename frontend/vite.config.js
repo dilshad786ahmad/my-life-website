@@ -34,9 +34,7 @@ export default defineConfig({
     chunkSizeWarningLimit: 600,
   },
   server: {
-    headers: {
-      'Cross-Origin-Opener-Policy': 'same-origin-allow-popups',
-    },
+    // Port or other server configs can go here
   },
   // Optimize dev server for faster HMR
   optimizeDeps: {
