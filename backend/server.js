@@ -4,6 +4,8 @@ const cors = require('cors');
 const mongodbConnect = require("./Database/db");
 const cookieParser = require('cookie-parser');
 
+// update for vercel deployment 
+
 const app = express();
 app.set('trust proxy', 1);
 
