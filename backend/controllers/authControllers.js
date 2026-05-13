@@ -29,7 +29,8 @@ exports.checkAdminExists = async (req, res) => {
 // ================= SIGNUP =================
 exports.signup = async (req, res) => {
     try {
-        const { username, email, password, mobileNumber, country, role, otp } = req.body;
+        const { username, email: rawEmail, password, mobileNumber, country, role, otp } = req.body;
+        const email = rawEmail?.trim().toLowerCase();
 
         // ✅ Validation (FIRST)
         if (!username) {
@@ -129,7 +130,8 @@ exports.signup = async (req, res) => {
 // ================= SEND SIGNUP OTP =================
 exports.sendSignupOtp = async (req, res) => {
     try {
-        const { email } = req.body;
+        const { email: rawEmail } = req.body;
+        const email = rawEmail?.trim().toLowerCase();
 
         if (!email) {
             return res.status(400).json({ message: "Email is required" });
@@ -175,7 +177,8 @@ exports.sendSignupOtp = async (req, res) => {
 
 exports.signin = async (req, res) => {
     try {
-        const { email, password, role } = req.body;
+        const { email: rawEmail, password, role } = req.body;
+        const email = rawEmail?.trim().toLowerCase();
 
         // 1. Validation
         if (!email || !password) {

@@ -18,7 +18,8 @@ const transporter = nodemailer.createTransport({
 // ================= STEP 1: SEND OTP =================
 exports.sendOtp = async (req, res) => {
     try {
-        const { email } = req.body;
+        const { email: rawEmail } = req.body;
+        const email = rawEmail?.trim().toLowerCase();
 
         if (!email) {
             return res.status(400).json({ success: false, message: "Email is required." });
@@ -65,7 +66,8 @@ exports.sendOtp = async (req, res) => {
 // ================= STEP 2: VERIFY OTP =================
 exports.verifyOtp = async (req, res) => {
     try {
-        const { email, otp } = req.body;
+        const { email: rawEmail, otp } = req.body;
+        const email = rawEmail?.trim().toLowerCase();
 
         if (!email || !otp) {
             return res.status(400).json({ success: false, message: "Email and OTP are required." });
@@ -98,7 +100,8 @@ exports.verifyOtp = async (req, res) => {
 // ================= STEP 3: RESET PASSWORD =================
 exports.resetPassword = async (req, res) => {
     try {
-        const { email, newPassword, confirmPassword } = req.body;
+        const { email: rawEmail, newPassword, confirmPassword } = req.body;
+        const email = rawEmail?.trim().toLowerCase();
 
         if (!email || !newPassword || !confirmPassword) {
             return res.status(400).json({ success: false, message: "All fields are required." });
@@ -120,7 +123,11 @@ exports.resetPassword = async (req, res) => {
 
         // Hash new password and update
         const hashedPassword = await bcrypt.hash(newPassword, 10);
-        await Auth.findOneAndUpdate({ email }, { password: hashedPassword });
+        const updatedUser = await Auth.findOneAndUpdate({ email }, { password: hashedPassword });
+
+        if (!updatedUser) {
+            return res.status(404).json({ success: false, message: "User not found." });
+        }
 
         // Clean up OTP store
         otpStore.delete(email);

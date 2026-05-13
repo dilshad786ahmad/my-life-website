@@ -85,7 +85,6 @@ app.use("/api/servicedetails", serviceDetailsRoutes);
 
 
 // admin get users router
-
 const adminGetUser=require("./routes/AuthUserAdmin.js")
 app.use("/api/admin", adminGetUser);
 

@@ -272,8 +272,7 @@ export default function SignIn() {
                 <GoogleLogin
                   onSuccess={handleGoogleSuccess}
                   onError={handleGoogleError}
-                  ux_mode="redirect"
-                  login_uri={window.location.hostname === "localhost" ? "http://localhost:5000/api/auth/google" : `${API_BASE_URL}/api/auth/google`}
+                  ux_mode="popup"
                   theme="filled_black"
                   shape="pill"
                   size="large"

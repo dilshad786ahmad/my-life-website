@@ -156,7 +156,7 @@ export default function About() {
         >
           <div className="absolute -inset-4 bg-gradient-to-tr from-orange-500/20 via-blue-500/10 to-transparent rounded-[3rem] blur-2xl opacity-50"></div>
           
-          <div className="relative w-full h-[400px] md:h-[500px] lg:h-[600px] rounded-[2.5rem] overflow-hidden group border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] bg-[#0a0a0a]">
+          <div className="relative w-full aspect-[4/5] md:aspect-square lg:aspect-[4/5] rounded-[3rem] overflow-hidden group border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] bg-[#0a0a0a] transform transition-transform duration-700 hover:scale-[1.02]">
             {loading ? (
                 <div className="w-full h-full bg-white/5 animate-pulse"></div>
             ) : (

@@ -63,17 +63,22 @@ exports.googleSignIn = async (req, res) => {
         // Set cookie
         res.cookie("token", token, {
             httpOnly: true,
-            secure: true,
-            sameSite: "none",
-            maxAge: 2 * 24 * 60 * 60 * 1000, // 7 days
+            secure: req.get("origin")?.includes("localhost") ? false : true,
+            sameSite: req.get("origin")?.includes("localhost") ? "lax" : "none",
+            maxAge: 2 * 24 * 60 * 60 * 1000, // 2 days
         });
 
         // Detect if this is a Google Redirect (form-encoded) or a Client-side Axios call
         const isRedirect = req.headers['content-type']?.includes('application/x-www-form-urlencoded');
 
         if (isRedirect) {
-            // Redirect back to frontend
-            return res.redirect("https://my-life-website-cjdr.vercel.app");
+            // Detect origin for redirect back to frontend
+            const origin = req.get("origin") || req.get("referer");
+            const redirectUrl = origin?.includes("localhost") 
+                ? "http://localhost:5173" 
+                : "https://my-life-website-cjdr.vercel.app";
+            
+            return res.redirect(redirectUrl);
         }
 
         const userData = {
