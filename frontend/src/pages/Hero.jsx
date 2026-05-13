@@ -14,51 +14,15 @@ const DynamicIcon = ({ name, className }) => {
   return <IconComponent className={className} />;
 };
 
-const TypingText = ({ text, className }) => {
-  const [displayText, setDisplayText] = useState("");
-  const [isDeleting, setIsDeleting] = useState(false);
-  const typingSpeedRef = useRef(100);
-  const timerRef = useRef(null);
-
-  useEffect(() => {
-    const fullText = text || "";
-    const words = fullText.split(" ");
-    const stopIndex = words.length > 2
-      ? words.slice(0, -2).join(" ").length + 1
-      : 0;
-
-    const handleType = () => {
-      setDisplayText(prev => {
-        const currentText = isDeleting
-          ? fullText.substring(0, prev.length - 1)
-          : fullText.substring(0, prev.length + 1);
-
-        if (!isDeleting && currentText === fullText) {
-          typingSpeedRef.current = 3000;
-          setTimeout(() => setIsDeleting(true), 3000);
-        } else if (isDeleting && currentText.length <= stopIndex) {
-          typingSpeedRef.current = 500;
-          setTimeout(() => setIsDeleting(false), 500);
-        } else {
-          typingSpeedRef.current = isDeleting ? 60 : 100;
-        }
-        return currentText;
-      });
-    };
-
-    timerRef.current = setTimeout(handleType, typingSpeedRef.current);
-    return () => clearTimeout(timerRef.current);
-  }, [displayText, isDeleting, text]);
-
-  // Split text to color the last word
-  const words = displayText.split(" ");
+const StaticText = ({ text, className }) => {
+  const fullText = text || "";
+  const words = fullText.split(" ");
   const lastWord = words.length > 1 ? words.pop() : "";
   const remainingText = words.join(" ");
 
   return (
     <span className={`${className} inline-block min-h-[1.2em]`}>
       {remainingText} {lastWord && <span className="text-orange-500">{lastWord}</span>}
-      <span className="animate-pulse text-orange-500 ml-1">|</span>
     </span>
   );
 };
@@ -164,7 +128,7 @@ export default function Home() {
               </div>
             ) : (
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-gray-500 mb-8 tracking-tight leading-[1.1]">
-                <TypingText text={hero.heading} />
+                <StaticText text={hero.heading} />
               </h1>
             )}
 
