@@ -91,7 +91,7 @@ export default function SkillsSection() {
         </motion.div>
 
         {/* Skill Cards */}
-        <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-6 mb-20">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 mb-20">
           {loading ? (
               [1,2,3,4].map(i => (
                   <SkeletonBase key={i} className="h-40 bg-white/5 rounded-3xl" />
