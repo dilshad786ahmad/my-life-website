@@ -19,7 +19,30 @@ export const AuthProvider = ({ children }) => {
     return null;
   });
 
-  const navigate = useNavigate(); // Hook initialize kiya
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const checkAuth = async () => {
+      try {
+        const res = await axios.get("https://my-life-website.onrender.com/api/auth/me", {
+          withCredentials: true
+        });
+        if (res.data.success) {
+          const userData = res.data.user;
+          setUser(userData);
+          localStorage.setItem("user", JSON.stringify(userData));
+        }
+      } catch (err) {
+        console.log("No active session found");
+        // Don't clear localStorage here if user is offline, but maybe clear if 401
+        if (err.response?.status === 401) {
+          setUser(null);
+          localStorage.removeItem("user");
+        }
+      }
+    };
+    checkAuth();
+  }, []);
 
   // --- LOGOUT FUNCTION WITH REDIRECT ---
   const logout = async () => {

@@ -271,6 +271,8 @@ export default function SignIn() {
                 <GoogleLogin
                   onSuccess={handleGoogleSuccess}
                   onError={handleGoogleError}
+                  ux_mode="redirect"
+                  login_uri="https://my-life-website.onrender.com/api/auth/google"
                   theme="filled_black"
                   shape="pill"
                   size="large"

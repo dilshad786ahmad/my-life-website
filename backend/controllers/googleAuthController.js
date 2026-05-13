@@ -68,6 +68,14 @@ exports.googleSignIn = async (req, res) => {
             maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
         });
 
+        // Detect if this is a Google Redirect (form-encoded) or a Client-side Axios call
+        const isRedirect = req.headers['content-type']?.includes('application/x-www-form-urlencoded');
+
+        if (isRedirect) {
+            // Redirect back to frontend
+            return res.redirect("https://my-life-website-cjdr.vercel.app/");
+        }
+
         const userData = {
             _id: user._id,
             username: user.username,
