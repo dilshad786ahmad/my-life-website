@@ -255,15 +255,17 @@ export default function Home() {
                           <div className="absolute inset-0 translate-x-8 translate-y-8 bg-white/[0.02] border border-white/10 rounded-[3.5rem] -z-20 blur-[4px]"></div>
 
                           <div className="relative h-full w-full rounded-[2.5rem] md:rounded-[3.5rem] overflow-hidden border border-white/20 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.7)] bg-[#0a0a0a] group cursor-pointer">
-                              <img 
-                                  src={cardImages[cardIndex] || null} 
-                                  alt={`Hero Card ${cardIndex}`} 
-                                  width="450"
-                                  height="560"
-                                  fetchPriority={cardIndex === 0 ? "high" : "auto"}
-                                  loading={cardIndex === 0 ? "eager" : "lazy"}
-                                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
-                              />
+                                  <img 
+                                      src={cardImages[cardIndex] || null} 
+                                      alt={`Hero Card ${cardIndex}`} 
+                                      width="450"
+                                      height="560"
+                                      fetchPriority={cardIndex === 0 ? "high" : "auto"}
+                                      loading={cardIndex === 0 ? "eager" : "lazy"}
+                                      referrerPolicy="no-referrer"
+                                      crossOrigin="anonymous"
+                                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
+                                  />
                               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                               
                               <div className="absolute bottom-8 left-8 right-8 p-6 bg-white/5 backdrop-blur-xl border border-white/10 rounded-[2rem] transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
