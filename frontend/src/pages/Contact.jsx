@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import Breadcrumb from "../components/Breadcrumb";
 import { SkeletonBase, TextSkeleton } from "../components/Skeleton";
+import { API_BASE_URL } from "../apiConfig";
 
 
 const IconMap = {
@@ -58,7 +59,7 @@ export default function SpecializedSolutions() {
   useEffect(() => {
     const fetchContent = async () => {
       try {
-        const res = await axios.get("https://my-life-website.onrender.com/api/contactpage");
+        const res = await axios.get(`${API_BASE_URL}/api/contactpage`);
         setPageContent(res.data.data);
       } catch (error) {
         console.error("Failed to fetch page content:", error);
@@ -86,7 +87,7 @@ export default function SpecializedSolutions() {
 
     try {
       const response = await axios.post(
-        "https://my-life-website.onrender.com/api/contact",
+        `${API_BASE_URL}/api/contact`,
         formData,
         { withCredentials: true }
       );

@@ -6,6 +6,7 @@ import { useAuth } from "../context/AuthContext";
 import Breadcrumb from "../components/Breadcrumb";
 import { motion, AnimatePresence } from "framer-motion";
 import { CardSkeleton } from "../components/Skeleton";
+import { API_BASE_URL } from "../apiConfig";
 
 export default function ClientFeedback() {
   const [feedbacks, setFeedbacks] = useState([]);
@@ -28,8 +29,8 @@ export default function ClientFeedback() {
 
   const fetchFeedbacks = async () => {
     try {
-      const res = await axios.get("https://my-life-website.onrender.com/api/feedback/public");
-      setFeedbacks(res.data.data);
+      const res = await axios.get(`${API_BASE_URL}/api/feedback/public`);
+      setFeedbacks(Array.isArray(res.data.data) ? res.data.data : []);
     } catch (error) {
       console.error("Failed to fetch feedbacks:", error);
     } finally {
@@ -41,7 +42,7 @@ export default function ClientFeedback() {
     setIsModalOpen(true);
     if (user) {
       try {
-        const res = await axios.get("https://my-life-website.onrender.com/api/feedback/me", { withCredentials: true });
+        const res = await axios.get(`${API_BASE_URL}/api/feedback/me`, { withCredentials: true });
         if (res.data.success && res.data.data) {
           setFormData({
             name: res.data.data.name || user?.username || "",
@@ -75,7 +76,7 @@ export default function ClientFeedback() {
     }
     setSubmitting(true);
     try {
-      await axios.post("https://my-life-website.onrender.com/api/feedback", formData, { withCredentials: true });
+      await axios.post(`${API_BASE_URL}/api/feedback`, formData, { withCredentials: true });
       toast.success("Feedback submitted successfully!");
       setIsModalOpen(false);
       fetchFeedbacks(); // Refresh the list
@@ -89,7 +90,7 @@ export default function ClientFeedback() {
   const handleDeleteMyFeedback = async () => {
     if (!window.confirm("Are you sure you want to delete your feedback?")) return;
     try {
-      await axios.delete("https://my-life-website.onrender.com/api/feedback/me", { withCredentials: true });
+      await axios.delete(`${API_BASE_URL}/api/feedback/me`, { withCredentials: true });
       toast.success("Feedback deleted successfully!");
       fetchFeedbacks(); // Refresh the list
     } catch (error) {

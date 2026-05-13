@@ -4,6 +4,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { motion, AnimatePresence } from "framer-motion";
 import { FolderGit2, Edit, Save, Plus, Trash2, X, Layout, Sparkles, Image as ImageIcon, ExternalLink, Box } from "lucide-react";
+import { API_BASE_URL } from "../apiConfig";
 
 const AdminProjects = () => {
   const navigate = useNavigate();
@@ -22,7 +23,7 @@ const AdminProjects = () => {
   const fetchData = async () => {
     setLoading(true);
     try {
-      const res = await axios.get("https://my-life-website.onrender.com/api/projectspage");
+      const res = await axios.get(`${API_BASE_URL}/api/projectspage`);
       const data = res.data.data;
       setContent(data);
       if (data) {
@@ -44,7 +45,7 @@ const AdminProjects = () => {
     e.preventDefault();
     setIsUpdating(true);
     try {
-      await axios.put("https://my-life-website.onrender.com/api/projectspage/header", headerForm, { withCredentials: true });
+      await axios.put(`${API_BASE_URL}/api/projectspage/header`, headerForm, { withCredentials: true });
       toast.success("Header updated!");
       fetchData();
     } catch (error) {
@@ -61,7 +62,7 @@ const AdminProjects = () => {
     else newProjects.push(projectModal.data);
 
     try {
-      await axios.put("https://my-life-website.onrender.com/api/projectspage/items", { projects: newProjects }, { withCredentials: true });
+      await axios.put(`${API_BASE_URL}/api/projectspage/items`, { projects: newProjects }, { withCredentials: true });
       toast.success("Portfolio synchronized!");
       setProjectModal({ ...projectModal, isOpen: false });
       fetchData();
@@ -74,7 +75,7 @@ const AdminProjects = () => {
     if (!window.confirm("Delete project?")) return;
     const newProjects = projects.filter((_, i) => i !== index);
     try {
-      await axios.put("https://my-life-website.onrender.com/api/projectspage/items", { projects: newProjects }, { withCredentials: true });
+      await axios.put(`${API_BASE_URL}/api/projectspage/items`, { projects: newProjects }, { withCredentials: true });
       toast.success("Project removed!");
       fetchData();
     } catch (error) {
@@ -228,7 +229,7 @@ const AdminProjects = () => {
                                     const data = new FormData();
                                     data.append("image", file);
                                     try {
-                                        const res = await axios.post("https://my-life-website.onrender.com/api/projectdetails/upload", data, {
+                                        const res = await axios.post(`${API_BASE_URL}/api/projectdetails/upload`, data, {
                                             headers: { "Content-Type": "multipart/form-data" },
                                             withCredentials: true
                                         });

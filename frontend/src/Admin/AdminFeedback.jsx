@@ -5,6 +5,7 @@ import {
   Search, Star, Edit2, Trash2, Calendar, X
 } from 'lucide-react';
 import toast from 'react-hot-toast';
+import { API_BASE_URL } from '../apiConfig';
 
 const TableSkeleton = ({ count = 5 }) => (
   <>
@@ -51,7 +52,7 @@ export default function AdminFeedback() {
 
     try {
       setLoading(true);
-      const response = await axios.get('https://my-life-website.onrender.com/api/feedback/admin', {
+      const response = await axios.get(`${API_BASE_URL}/api/feedback/admin`, {
         headers: { Authorization: `Bearer ${token}` },
         withCredentials: true,
         params: {
@@ -86,7 +87,7 @@ export default function AdminFeedback() {
     if (window.confirm("Are you sure you want to permanently delete this feedback?")) {
       try {
         const token = localStorage.getItem("token");
-        await axios.delete(`https://my-life-website.onrender.com/api/feedback/admin/${id}`, {
+        await axios.delete(`${API_BASE_URL}/api/feedback/admin/${id}`, {
           headers: { Authorization: `Bearer ${token}` },
           withCredentials: true
         });
@@ -101,7 +102,7 @@ export default function AdminFeedback() {
   const handleEditSubmit = async () => {
     try {
       const token = localStorage.getItem("token");
-      await axios.put(`https://my-life-website.onrender.com/api/feedback/admin/${editModalData._id}`, {
+      await axios.put(`${API_BASE_URL}/api/feedback/admin/${editModalData._id}`, {
         status: editModalData.status,
         name: editModalData.name,
         email: editModalData.email,

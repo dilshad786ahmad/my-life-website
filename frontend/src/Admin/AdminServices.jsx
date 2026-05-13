@@ -4,6 +4,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { motion, AnimatePresence } from "framer-motion";
 import { Palette, Code, Monitor, Edit, Save, Plus, Trash2, X, Layout, Sparkles, Box } from "lucide-react";
+import { API_BASE_URL } from "../apiConfig";
 
 const IconMap = { Palette, Code, Monitor, Layout, Box };
 
@@ -28,7 +29,7 @@ const AdminServices = () => {
   const fetchData = async () => {
     setLoading(true);
     try {
-      const res = await axios.get("https://my-life-website.onrender.com/api/servicespage");
+      const res = await axios.get(`${API_BASE_URL}/api/servicespage`);
       const data = res.data.data;
       setContent(data);
       if (data) {
@@ -50,7 +51,7 @@ const AdminServices = () => {
     e.preventDefault();
     setIsUpdating(true);
     try {
-      await axios.put("https://my-life-website.onrender.com/api/servicespage/header", headerForm, { withCredentials: true });
+      await axios.put(`${API_BASE_URL}/api/servicespage/header`, headerForm, { withCredentials: true });
       toast.success("Header updated!");
       fetchData();
     } catch (error) {
@@ -67,7 +68,7 @@ const AdminServices = () => {
     else newServices.push(cardModal.data);
 
     try {
-      await axios.put("https://my-life-website.onrender.com/api/servicespage/cards", { services: newServices }, { withCredentials: true });
+      await axios.put(`${API_BASE_URL}/api/servicespage/cards`, { services: newServices }, { withCredentials: true });
       toast.success("Services updated!");
       setCardModal({ ...cardModal, isOpen: false });
       fetchData();
@@ -80,7 +81,7 @@ const AdminServices = () => {
     if (!window.confirm("⚠️ ATTENTION: This will permanently delete this service card and all its associated page details. Proceed?")) return;
     const newServices = services.filter((_, i) => i !== index);
     try {
-      await axios.put("https://my-life-website.onrender.com/api/servicespage/cards", { services: newServices }, { withCredentials: true });
+      await axios.put(`${API_BASE_URL}/api/servicespage/cards`, { services: newServices }, { withCredentials: true });
       toast.success("Service and associated data purged!");
       fetchData();
     } catch (error) {

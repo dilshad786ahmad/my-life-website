@@ -4,6 +4,7 @@ import axios from "axios";
 import { motion } from "framer-motion";
 import { CheckCircle2, ArrowLeft, Sparkles } from "lucide-react";
 import { TextSkeleton, SkeletonBase } from "../components/Skeleton";
+import { API_BASE_URL } from "../apiConfig";
 
 export default function DynamicPage() {
   const { slug } = useParams();
@@ -14,7 +15,7 @@ export default function DynamicPage() {
     const fetchPage = async () => {
       setLoading(true);
       try {
-        const res = await axios.get(`https://my-life-website.onrender.com/api/pages/${slug}`);
+        const res = await axios.get(`${API_BASE_URL}/api/pages/${slug}`);
         setPageData(res.data.data);
         setLoading(false);
       } catch (error) {

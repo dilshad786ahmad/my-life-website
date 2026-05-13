@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { API_BASE_URL } from "../apiConfig";
 import { motion, AnimatePresence } from "framer-motion";
 import { Sparkles, Edit, Save, Plus, Trash2, Layout, Image as ImageIcon, BarChart3, ChevronRight, X, Download } from "lucide-react";
 
@@ -28,7 +29,7 @@ const AdminAbout = () => {
   const fetchData = async () => {
     setLoading(true);
     try {
-      const res = await axios.get("https://my-life-website.onrender.com/api/aboutpage");
+      const res = await axios.get(`${API_BASE_URL}/api/aboutpage`);
       const data = res.data.data;
       setContent(data);
       if (data) {
@@ -51,7 +52,7 @@ const AdminAbout = () => {
     e.preventDefault();
     setIsUpdating(true);
     try {
-      await axios.put("https://my-life-website.onrender.com/api/aboutpage/hero", heroForm, { withCredentials: true });
+      await axios.put(`${API_BASE_URL}/api/aboutpage/hero`, heroForm, { withCredentials: true });
       toast.success("Hero section updated!");
       fetchData();
     } catch (error) {
@@ -71,7 +72,7 @@ const AdminAbout = () => {
     }
     
     try {
-      await axios.put("https://my-life-website.onrender.com/api/aboutpage/stats", { stats: newStats }, { withCredentials: true });
+      await axios.put(`${API_BASE_URL}/api/aboutpage/stats`, { stats: newStats }, { withCredentials: true });
       toast.success("Stats updated!");
       setStatModal({ ...statModal, isOpen: false });
       fetchData();
@@ -84,7 +85,7 @@ const AdminAbout = () => {
     if (!window.confirm("Are you sure?")) return;
     const newStats = stats.filter((_, i) => i !== index);
     try {
-      await axios.put("https://my-life-website.onrender.com/api/aboutpage/stats", { stats: newStats }, { withCredentials: true });
+      await axios.put(`${API_BASE_URL}/api/aboutpage/stats`, { stats: newStats }, { withCredentials: true });
       toast.success("Stat deleted!");
       fetchData();
     } catch (error) {
@@ -96,7 +97,7 @@ const AdminAbout = () => {
     e.preventDefault();
     const newImages = [...images, imageModal.url];
     try {
-      await axios.put("https://my-life-website.onrender.com/api/aboutpage/images", { images: newImages }, { withCredentials: true });
+      await axios.put(`${API_BASE_URL}/api/aboutpage/images`, { images: newImages }, { withCredentials: true });
       toast.success("Image added!");
       setImageModal({ isOpen: false, url: "" });
       fetchData();
@@ -109,7 +110,7 @@ const AdminAbout = () => {
     if (!window.confirm("Delete image?")) return;
     const newImages = images.filter((_, i) => i !== index);
     try {
-      await axios.put("https://my-life-website.onrender.com/api/aboutpage/images", { images: newImages }, { withCredentials: true });
+      await axios.put(`${API_BASE_URL}/api/aboutpage/images`, { images: newImages }, { withCredentials: true });
       toast.success("Image removed!");
       fetchData();
     } catch (error) {
@@ -126,7 +127,7 @@ const AdminAbout = () => {
 
     setIsUploadingImage(true);
     try {
-      const res = await axios.post("https://my-life-website.onrender.com/api/aboutpage/upload-image", formData, {
+      const res = await axios.post(`${API_BASE_URL}/api/aboutpage/upload-image`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
         withCredentials: true
       });
@@ -148,7 +149,7 @@ const AdminAbout = () => {
 
     setIsUploadingResume(true);
     try {
-      const res = await axios.post("https://my-life-website.onrender.com/api/aboutpage/upload-resume", formData, {
+      const res = await axios.post(`${API_BASE_URL}/api/aboutpage/upload-resume`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
         withCredentials: true
       });

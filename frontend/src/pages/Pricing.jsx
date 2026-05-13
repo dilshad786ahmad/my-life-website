@@ -3,6 +3,7 @@ import axios from "axios";
 import { CheckCircle2, Asterisk, Layers, Rocket, Code, Layout, AppWindow, ArrowRight, Zap, Globe, Shield } from 'lucide-react';
 import Breadcrumb from "../components/Breadcrumb";
 import { CardSkeleton } from "../components/Skeleton";
+import { API_BASE_URL } from "../apiConfig";
 
 const IconMap = { Asterisk, Layers, Rocket, Code, Layout, AppWindow, Zap, Globe, Shield };
 const DynamicIcon = ({ name, className }) => {
@@ -17,7 +18,7 @@ export default function PricingPage() {
   useEffect(() => {
     const fetchContent = async () => {
       try {
-        const res = await axios.get("https://my-life-website.onrender.com/api/pricingpage");
+        const res = await axios.get(`${API_BASE_URL}/api/pricingpage`);
         setContent(res.data.data);
       } catch (error) {
         console.error("Failed to load pricing content", error);

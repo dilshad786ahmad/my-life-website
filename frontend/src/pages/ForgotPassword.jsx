@@ -5,6 +5,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
 import Breadcrumb from "../components/Breadcrumb";
+import { API_BASE_URL } from "../apiConfig";
 
 const STEPS = ["Email", "OTP", "Reset"];
 const OTP_DURATION = 120; // 2 minutes in seconds
@@ -43,7 +44,7 @@ export default function ForgotPassword() {
     if (!email) return toast.error("Please enter your email.");
     setLoading(true);
     try {
-      const res = await axios.post("https://my-life-website.onrender.com/api/forgot-password/send-otp", { email });
+      const res = await axios.post(`${API_BASE_URL}/api/forgot-password/send-otp`, { email });
       toast.success(res.data.message);
       setStep(2);
       setTimer(OTP_DURATION);
@@ -88,7 +89,7 @@ export default function ForgotPassword() {
     if (timer === 0) return toast.error("OTP has expired. Please request a new one.");
     setLoading(true);
     try {
-      const res = await axios.post("https://my-life-website.onrender.com/api/forgot-password/verify-otp", { email, otp: otpStr });
+      const res = await axios.post(`${API_BASE_URL}/api/forgot-password/verify-otp`, { email, otp: otpStr });
       toast.success(res.data.message);
       setTimerActive(false);
       setStep(3);
@@ -103,7 +104,7 @@ export default function ForgotPassword() {
   const handleResendOtp = async () => {
     setLoading(true);
     try {
-      const res = await axios.post("https://my-life-website.onrender.com/api/forgot-password/send-otp", { email });
+      const res = await axios.post(`${API_BASE_URL}/api/forgot-password/send-otp`, { email });
       toast.success("New OTP sent!");
       setOtp(["", "", "", "", "", ""]);
       setTimer(OTP_DURATION);
@@ -123,7 +124,7 @@ export default function ForgotPassword() {
     if (newPassword.length < 6) return toast.error("Password must be at least 6 characters.");
     setLoading(true);
     try {
-      const res = await axios.post("https://my-life-website.onrender.com/api/forgot-password/reset-password", {
+      const res = await axios.post(`${API_BASE_URL}/api/forgot-password/reset-password`, {
         email, newPassword, confirmPassword,
       });
       toast.success(res.data.message);

@@ -7,6 +7,7 @@ import { useAuth } from "../context/AuthContext";
 import toast from 'react-hot-toast';
 import { motion, AnimatePresence } from "framer-motion";
 import Breadcrumb from "../components/Breadcrumb";
+import { API_BASE_URL } from "../apiConfig";
 
 export default function SignUp() {
   const [formData, setFormData] = useState({
@@ -69,7 +70,7 @@ export default function SignUp() {
   React.useEffect(() => {
     const checkAdmin = async () => {
       try {
-        const res = await axios.get("https://my-life-website.onrender.com/api/auth/check-admin");
+        const res = await axios.get(`${API_BASE_URL}/api/auth/check-admin`);
         setAdminExists(res.data.exists);
       } catch (err) {
         console.error("Error checking admin status:", err);
@@ -88,7 +89,7 @@ export default function SignUp() {
 
     try {
       const response = await axios.post(
-        "https://my-life-website.onrender.com/api/auth/send-signup-otp", 
+        `${API_BASE_URL}/api/auth/send-signup-otp`, 
         { email: formData.email }
       );
 
@@ -119,7 +120,7 @@ export default function SignUp() {
     setLoading(true);
     try {
       const response = await axios.post(
-        "https://my-life-website.onrender.com/api/auth/signup", 
+        `${API_BASE_URL}/api/auth/signup`, 
         { ...formData, otp: otpStr },
         { withCredentials: true }
       );

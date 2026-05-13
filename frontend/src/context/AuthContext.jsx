@@ -2,6 +2,7 @@ import { createContext, useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom"; // Navigation ke liye
 import axios from "axios";
 import toast from "react-hot-toast";
+import { API_BASE_URL } from "../apiConfig";
 
 const AuthContext = createContext();
 
@@ -24,7 +25,7 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const res = await axios.get("https://my-life-website.onrender.com/api/auth/me", {
+        const res = await axios.get(`${API_BASE_URL}/api/auth/me`, {
           withCredentials: true
         });
         if (res.data.success) {
@@ -48,7 +49,7 @@ export const AuthProvider = ({ children }) => {
   const logout = async () => {
     try {
       // 1. Backend call with credentials for cookies
-      await axios.post("https://my-life-website.onrender.com/api/auth/logout", {}, { 
+      await axios.post(`${API_BASE_URL}/api/auth/logout`, {}, { 
         withCredentials: true 
       });
       

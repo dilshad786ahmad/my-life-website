@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import { motion, AnimatePresence } from 'framer-motion';
+import { API_BASE_URL } from '../apiConfig';
 import {
   Search, Bell, HelpCircle, Users, ClipboardList, CheckCircle2,
   Calendar, Edit2, Trash2, Menu, X, ArrowRight
@@ -76,7 +77,7 @@ export default function AdminDashboard() {
 
     try {
       setLoading(true);
-      const response = await axios.get('https://my-life-website.onrender.com/api/admin/', {
+      const response = await axios.get(`${API_BASE_URL}/api/admin/`, {
         headers: { Authorization: `Bearer ${token}` },
         withCredentials: true,
         params: {
@@ -114,7 +115,7 @@ export default function AdminDashboard() {
     if (window.confirm("Are you sure you want to permanently delete this user record?")) {
       try {
         const token = localStorage.getItem("token");
-        await axios.delete(`https://my-life-website.onrender.com/api/admin/${id}`, {
+        await axios.delete(`${API_BASE_URL}/api/admin/${id}`, {
           headers: { Authorization: `Bearer ${token}` },
           withCredentials: true
         });
@@ -126,7 +127,7 @@ export default function AdminDashboard() {
   const handleEditSubmit = async () => {
     try {
       const token = localStorage.getItem("token");
-      await axios.put(`https://my-life-website.onrender.com/api/admin/${editModalData.id}`, {
+      await axios.put(`${API_BASE_URL}/api/admin/${editModalData.id}`, {
         query: editModalData.query,
         leadStatus: editModalData.leadStatus
       }, {

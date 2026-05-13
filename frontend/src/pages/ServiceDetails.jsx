@@ -8,6 +8,7 @@ import { useAuth } from "../context/AuthContext";
 import toast from "react-hot-toast";
 
 import { SkeletonBase, TextSkeleton } from "../components/Skeleton";
+import { API_BASE_URL } from "../apiConfig";
 
 const IconMap = { Layout, Monitor, Code, Box, Zap, Cpu, MousePointer2, Database };
 
@@ -26,7 +27,7 @@ export default function ServiceDetails() {
   useEffect(() => {
     const fetchDetails = async () => {
       try {
-        const res = await axios.get(`https://my-life-website.onrender.com/api/servicedetails/${serviceId}`);
+        const res = await axios.get(`${API_BASE_URL}/api/servicedetails/${serviceId}`);
         setDetails(res.data.data);
       } catch (error) {
         console.error("Error fetching service details:", error);

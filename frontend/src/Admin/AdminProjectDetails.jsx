@@ -4,6 +4,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { motion } from "framer-motion";
 import { Save, ArrowLeft, Image as ImageIcon, Plus, Trash2, Star, Sparkles, Layout, Box } from "lucide-react";
+import { API_BASE_URL } from "../apiConfig";
 
 export default function AdminProjectDetails() {
   const { projectId } = useParams();
@@ -40,7 +41,7 @@ export default function AdminProjectDetails() {
   useEffect(() => {
     const fetchDetails = async () => {
       try {
-        const res = await axios.get(`https://my-life-website.onrender.com/api/projectdetails/${projectId}`);
+        const res = await axios.get(`${API_BASE_URL}/api/projectdetails/${projectId}`);
         if (res.data.data) {
             setFormData(res.data.data);
         }
@@ -61,7 +62,7 @@ export default function AdminProjectDetails() {
     data.append("image", file);
 
     try {
-      const res = await axios.post("https://my-life-website.onrender.com/api/projectdetails/upload", data, {
+      const res = await axios.post(`${API_BASE_URL}/api/projectdetails/upload`, data, {
         headers: { "Content-Type": "multipart/form-data" },
         withCredentials: true
       });
@@ -84,7 +85,7 @@ export default function AdminProjectDetails() {
     e.preventDefault();
     setSaving(true);
     try {
-      await axios.post("https://my-life-website.onrender.com/api/projectdetails", formData, { withCredentials: true });
+      await axios.post(`${API_BASE_URL}/api/projectdetails`, formData, { withCredentials: true });
       toast.success("Project Details Synchronized!");
     } catch (error) {
       toast.error("Save failed");

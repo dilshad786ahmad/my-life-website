@@ -7,6 +7,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import toast from "react-hot-toast";
 import Breadcrumb from "../components/Breadcrumb";
 import { CardSkeleton } from "../components/Skeleton";
+import { API_BASE_URL } from "../apiConfig";
 
 export default function FeaturedProjects() {
   const [content, setContent] = useState(null);
@@ -26,7 +27,7 @@ export default function FeaturedProjects() {
   const fetchData = async () => {
     try {
       if (firstLoad) setLoading(true);
-      const res = await axios.get(`https://my-life-website.onrender.com/api/projectspage?search=${search}&category=${category}&sort=${sort}`);
+      const res = await axios.get(`${API_BASE_URL}/api/projectspage?search=${search}&category=${category}&sort=${sort}`);
       setContent(res.data.data);
       setLoading(false);
       setFirstLoad(false);
@@ -192,7 +193,7 @@ export default function FeaturedProjects() {
                     >
                         <div className="relative aspect-video overflow-hidden">
                             <img
-                                src={`${project.image}${project.image.includes('?') ? '&' : '?'}auto=format&fit=crop&q=80&w=600&fm=webp`}
+                                src={project.image || '/placeholder-project.jpg'}
                                 loading="lazy"
                                 width="400"
                                 height="300"

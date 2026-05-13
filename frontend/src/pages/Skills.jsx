@@ -4,6 +4,7 @@ import axios from "axios";
 import { motion } from "framer-motion";
 import Breadcrumb from "../components/Breadcrumb";
 import { SkeletonBase } from "../components/Skeleton";
+import { API_BASE_URL } from "../apiConfig";
 
 const IconMap = { Code, Database, Cloud, PenTool, Box, Server, Cpu, Users, MessageCircle, Clock, Layout };
 
@@ -19,7 +20,7 @@ export default function SkillsSection() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get("https://my-life-website.onrender.com/api/skillspage");
+        const res = await axios.get(`${API_BASE_URL}/api/skillspage`);
         setContent(res.data.data);
       } catch (error) {
         console.error("Error fetching skills content:", error);

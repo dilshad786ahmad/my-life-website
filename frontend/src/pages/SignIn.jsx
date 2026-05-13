@@ -8,6 +8,7 @@ import toast from 'react-hot-toast';
 import { motion } from "framer-motion";
 import Breadcrumb from "../components/Breadcrumb";
 import { GoogleLogin } from "@react-oauth/google";
+import { API_BASE_URL } from "../apiConfig";
 
 export default function SignIn() {
   const [formData, setFormData] = useState({
@@ -51,7 +52,7 @@ export default function SignIn() {
   const handleGoogleSuccess = async (credentialResponse) => {
     try {
       const res = await axios.post(
-        "https://my-life-website.onrender.com/api/auth/google",
+        `${API_BASE_URL}/signin`,
         { credential: credentialResponse.credential },
         { withCredentials: true }
       );
@@ -92,7 +93,7 @@ export default function SignIn() {
 
     try {
       const response = await axios.post(
-        "https://my-life-website.onrender.com/api/auth/signin", 
+        `${API_BASE_URL}/api/auth/signin`, 
         formData,
         { withCredentials: true }
       );
@@ -272,7 +273,7 @@ export default function SignIn() {
                   onSuccess={handleGoogleSuccess}
                   onError={handleGoogleError}
                   ux_mode="redirect"
-                  login_uri={window.location.hostname === "localhost" ? "http://localhost:5000/api/auth/google" : "https://my-life-website.onrender.com/api/auth/google"}
+                  login_uri={window.location.hostname === "localhost" ? "http://localhost:5000/api/auth/google" : `${API_BASE_URL}/api/auth/google`}
                   theme="filled_black"
                   shape="pill"
                   size="large"

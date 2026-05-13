@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { motion, AnimatePresence } from "framer-motion";
+import { API_BASE_URL } from "../apiConfig";
 import { Mail, Trash2, Filter, Clock, X, AlertTriangle, Edit, Plus, Layout, Smartphone, Brush, Gauge, MapPin, Save, ChevronRight, MessageSquare, ShieldCheck } from "lucide-react";
 
 // Icon mapping for dynamic rendering
@@ -38,11 +39,11 @@ const AdminContact = () => {
     setLoadingLeads(true);
     try {
       const url = filter 
-        ? `https://my-life-website.onrender.com/api/contact?status=${filter}` 
-        : `https://my-life-website.onrender.com/api/contact`;
+        ? `${API_BASE_URL}/api/contact?status=${filter}` 
+        : `${API_BASE_URL}/api/contact`;
       
       const res = await axios.get(url, { withCredentials: true });
-      setLeads(res.data.data);
+      setLeads(Array.isArray(res.data.data) ? res.data.data : []);
     } catch (error) {
       toast.error("Leads load nahi ho payi!");
     } finally {
@@ -54,7 +55,7 @@ const AdminContact = () => {
   const fetchContent = async () => {
     setLoadingContent(true);
     try {
-      const res = await axios.get("https://my-life-website.onrender.com/api/contactpage");
+      const res = await axios.get(`${API_BASE_URL}/api/contactpage`);
       const content = res.data.data;
       setPageContent(content);
       if(content) {
@@ -80,7 +81,7 @@ const AdminContact = () => {
   // --- LEADS HANDLERS ---
   const handleStatusUpdate = async (id, newStatus) => {
     try {
-      await axios.put(`https://my-life-website.onrender.com/api/contact/${id}`, 
+      await axios.put(`${API_BASE_URL}/api/contact/${id}`, 
         { status: newStatus }, 
         { withCredentials: true }
       );
@@ -94,7 +95,7 @@ const AdminContact = () => {
   const handleConfirmDelete = async () => {
     if (!deleteModalData) return;
     try {
-      await axios.delete(`https://my-life-website.onrender.com/api/contact/${deleteModalData}`, { withCredentials: true });
+      await axios.delete(`${API_BASE_URL}/api/contact/${deleteModalData}`, { withCredentials: true });
       toast.success("Lead deleted successfully! 🗑️");
       setDeleteModalData(null); 
       fetchLeads(); 
@@ -108,7 +109,7 @@ const AdminContact = () => {
     e.preventDefault();
     setIsUpdatingMain(true);
     try {
-      await axios.put("https://my-life-website.onrender.com/api/contactpage/main-text", mainContentForm, { withCredentials: true });
+      await axios.put(`${API_BASE_URL}/api/contactpage/main-text`, mainContentForm, { withCredentials: true });
       toast.success("Main content updated!");
       fetchContent();
     } catch (error) {
@@ -122,10 +123,10 @@ const AdminContact = () => {
     e.preventDefault();
     try {
       if(cardModal.isEdit) {
-        await axios.put(`https://my-life-website.onrender.com/api/contactpage/cards/${cardModal.cardId}`, cardModal.data, { withCredentials: true });
+        await axios.put(`${API_BASE_URL}/api/contactpage/cards/${cardModal.cardId}`, cardModal.data, { withCredentials: true });
         toast.success("Card updated!");
       } else {
-        await axios.post("https://my-life-website.onrender.com/api/contactpage/cards", cardModal.data, { withCredentials: true });
+        await axios.post(`${API_BASE_URL}/api/contactpage/cards`, cardModal.data, { withCredentials: true });
         toast.success("Card added!");
       }
       setCardModal({ ...cardModal, isOpen: false });
@@ -138,7 +139,7 @@ const AdminContact = () => {
   const handleDeleteCard = async (id) => {
     if(!window.confirm("Are you sure you want to delete this card?")) return;
     try {
-      await axios.delete(`https://my-life-website.onrender.com/api/contactpage/cards/${id}`, { withCredentials: true });
+      await axios.delete(`${API_BASE_URL}/api/contactpage/cards/${id}`, { withCredentials: true });
       toast.success("Card deleted!");
       fetchContent();
     } catch(err) { toast.error("Failed to delete card!"); }
@@ -148,10 +149,10 @@ const AdminContact = () => {
     e.preventDefault();
     try {
       if(infoModal.isEdit) {
-        await axios.put(`https://my-life-website.onrender.com/api/contactpage/info/${infoModal.infoId}`, infoModal.data, { withCredentials: true });
+        await axios.put(`${API_BASE_URL}/api/contactpage/info/${infoModal.infoId}`, infoModal.data, { withCredentials: true });
         toast.success("Info updated!");
       } else {
-        await axios.post("https://my-life-website.onrender.com/api/contactpage/info", infoModal.data, { withCredentials: true });
+        await axios.post(`${API_BASE_URL}/api/contactpage/info`, infoModal.data, { withCredentials: true });
         toast.success("Info added!");
       }
       setInfoModal({ ...infoModal, isOpen: false });
@@ -164,7 +165,7 @@ const AdminContact = () => {
   const handleDeleteInfo = async (id) => {
     if(!window.confirm("Are you sure you want to delete this info item?")) return;
     try {
-      await axios.delete(`https://my-life-website.onrender.com/api/contactpage/info/${id}`, { withCredentials: true });
+      await axios.delete(`${API_BASE_URL}/api/contactpage/info/${id}`, { withCredentials: true });
       toast.success("Info deleted!");
       fetchContent();
     } catch(err) { toast.error("Failed to delete info!"); }

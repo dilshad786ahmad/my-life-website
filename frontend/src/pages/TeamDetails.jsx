@@ -8,6 +8,7 @@ import { useAuth } from '../context/AuthContext';
 import { useTheme } from '../context/ThemeContext';
 import { SkeletonBase, TextSkeleton } from '../components/Skeleton';
 import toast from 'react-hot-toast';
+import { API_BASE_URL } from '../apiConfig';
 
 const TeamDetails = () => {
     const { id } = useParams();
@@ -27,7 +28,7 @@ const TeamDetails = () => {
 
         const fetchMember = async () => {
             try {
-                const response = await axios.get(`https://my-life-website.onrender.com/api/team/${id}`);
+                const response = await axios.get(`${API_BASE_URL}/api/team/${id}`);
                 setMember(response.data);
             } catch (error) {
                 console.error("Error fetching team member details:", error);

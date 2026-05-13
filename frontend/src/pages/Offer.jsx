@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Code, Palette, Monitor, ArrowRight, Layout, Box } from "lucide-react";
+import { Layout, Smartphone, Brush, Gauge, Globe, Code, Zap, Sparkles, Palette, Monitor, ArrowRight, Box } from "lucide-react";
+import { API_BASE_URL } from "../apiConfig";
 import Breadcrumb from "../components/Breadcrumb";
 import ExcellenceSection from "./Excellenace";
 import axios from "axios";
@@ -21,7 +22,7 @@ export default function WhatIOffer() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get("https://my-life-website.onrender.com/api/servicespage");
+        const res = await axios.get(`${API_BASE_URL}/api/servicespage`);
         setContent(res.data.data);
         setLoading(false);
       } catch (error) {

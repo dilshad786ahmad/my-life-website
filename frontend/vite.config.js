@@ -34,7 +34,16 @@ export default defineConfig({
     chunkSizeWarningLimit: 600,
   },
   server: {
-    // Port or other server configs can go here
+    proxy: {
+      '/api': {
+        target: 'http://localhost:5000',
+        changeOrigin: true,
+      },
+      '/uploads': {
+        target: 'http://localhost:5000',
+        changeOrigin: true,
+      },
+    },
   },
   // Optimize dev server for faster HMR
   optimizeDeps: {

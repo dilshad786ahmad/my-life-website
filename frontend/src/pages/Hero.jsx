@@ -6,6 +6,7 @@ import axios from "axios";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "../context/ThemeContext";
 import { CardSkeleton, HeroStackSkeleton, SkeletonBase } from "../components/Skeleton";
+import { API_BASE_URL } from "../apiConfig";
 
 const IconMap = { Cloud, Lock, BarChart3, Box, Layout };
 
@@ -46,7 +47,7 @@ export default function Home() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get("https://my-life-website.onrender.com/api/homepage");
+        const res = await axios.get(`${API_BASE_URL}/api/homepage`);
         setContent(res.data.data);
         localStorage.setItem('homepageContent', JSON.stringify(res.data.data));
         setLoading(false);

@@ -3,6 +3,7 @@ import { useParams, useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { motion } from "framer-motion";
+import { API_BASE_URL } from "../apiConfig";
 import { Save, ArrowLeft, ArrowRight, Plus, Trash2, Layout, Monitor, Code, Box, Zap, Cpu, MousePointer2, Database, Image as ImageIcon, Eye } from "lucide-react";
 
 const IconMap = { Layout, Monitor, Code, Box, Zap, Cpu, MousePointer2, Database };
@@ -31,7 +32,7 @@ const AdminServiceDetails = () => {
   useEffect(() => {
     const fetchDetails = async () => {
       try {
-        const res = await axios.get(`https://my-life-website.onrender.com/api/servicedetails/${serviceId}`);
+        const res = await axios.get(`${API_BASE_URL}/api/servicedetails/${serviceId}`);
         if (res.data.data) {
           setFormData(res.data.data);
           setImagePreview(res.data.data.mainImage || "");
@@ -55,7 +56,7 @@ const AdminServiceDetails = () => {
     e.preventDefault();
     setIsUpdating(true);
     try {
-      await axios.post(`https://my-life-website.onrender.com/api/servicedetails/${serviceId}`, formData, { withCredentials: true });
+      await axios.post(`${API_BASE_URL}/api/servicedetails/${serviceId}`, formData, { withCredentials: true });
       toast.success("Service Details Updated! 🚀");
     } catch (error) {
       toast.error("Failed to update details");

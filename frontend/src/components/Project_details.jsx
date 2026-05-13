@@ -5,6 +5,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { CheckCircle2, Calendar, User, Briefcase, ExternalLink, MessageCircle, Star, ArrowRight, Sparkles, Layout, Filter } from "lucide-react";
 import Breadcrumb from "./Breadcrumb";
+import { API_BASE_URL } from "../apiConfig";
 
 export default function ProjectDetails() {
   const { projectId } = useParams();
@@ -20,7 +21,7 @@ export default function ProjectDetails() {
   useEffect(() => {
     const fetchDetails = async () => {
       try {
-        const res = await axios.get(`https://my-life-website.onrender.com/api/projectdetails/${projectId}`);
+        const res = await axios.get(`${API_BASE_URL}/api/projectdetails/${projectId}`);
         setDetails(res.data.data);
         setActiveImage(res.data.data.mainImage);
       } catch (error) {
@@ -39,7 +40,7 @@ export default function ProjectDetails() {
     }
     setIsSubmittingReview(true);
     try {
-        const res = await axios.post(`https://my-life-website.onrender.com/api/projectdetails/review`, {
+        const res = await axios.post(`${API_BASE_URL}/api/projectdetails/review`, {
             projectId,
             ...reviewForm
         });

@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import { motion, AnimatePresence } from "framer-motion";
 import { Layout, Edit, Save, Plus, Trash2, Image as ImageIcon, Box, Cloud, Lock, BarChart3, X, Sparkles } from "lucide-react";
 import { SkeletonBase } from "../components/Skeleton";
+import { API_BASE_URL } from "../apiConfig";
 
 const IconMap = { Cloud, Lock, BarChart3, Box, Layout };
 
@@ -29,7 +30,7 @@ const AdminHome = () => {
   const fetchData = async () => {
     setLoading(true);
     try {
-      const res = await axios.get("https://my-life-website.onrender.com/api/homepage");
+      const res = await axios.get(`${API_BASE_URL}/api/homepage`);
       const data = res.data.data;
       setContent(data);
       if (data) {
@@ -59,7 +60,7 @@ const AdminHome = () => {
     e.preventDefault();
     setIsUpdating(true);
     try {
-      await axios.put("https://my-life-website.onrender.com/api/homepage/hero", heroForm, { withCredentials: true });
+      await axios.put(`${API_BASE_URL}/api/homepage/hero`, heroForm, { withCredentials: true });
       toast.success("Hero updated!");
       fetchData();
     } catch (error) {
@@ -73,7 +74,7 @@ const AdminHome = () => {
     e.preventDefault();
     setIsUpdating(true);
     try {
-      await axios.put("https://my-life-website.onrender.com/api/homepage/social", socialLinks, { withCredentials: true });
+      await axios.put(`${API_BASE_URL}/api/homepage/social`, socialLinks, { withCredentials: true });
       toast.success("Social links updated!");
       fetchData();
     } catch (error) {
@@ -90,7 +91,7 @@ const AdminHome = () => {
     else newCards.push(cardModal.data);
 
     try {
-      await axios.put("https://my-life-website.onrender.com/api/homepage/cards", { cards: newCards }, { withCredentials: true });
+      await axios.put(`${API_BASE_URL}/api/homepage/cards`, { cards: newCards }, { withCredentials: true });
       toast.success("Cards updated!");
       setCardModal({ ...cardModal, isOpen: false });
       fetchData();
@@ -103,7 +104,7 @@ const AdminHome = () => {
     if (!window.confirm("Delete card?")) return;
     const newCards = cards.filter((_, i) => i !== index);
     try {
-      await axios.put("https://my-life-website.onrender.com/api/homepage/cards", { cards: newCards }, { withCredentials: true });
+      await axios.put(`${API_BASE_URL}/api/homepage/cards`, { cards: newCards }, { withCredentials: true });
       toast.success("Card deleted!");
       fetchData();
     } catch (error) {

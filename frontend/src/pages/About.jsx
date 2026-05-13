@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import axios from "axios";
 import { SkeletonBase, TextSkeleton } from "../components/Skeleton";
+import { API_BASE_URL } from "../apiConfig";
 
 export default function About() {
   const [content, setContent] = useState(null);
@@ -19,7 +20,7 @@ export default function About() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get("https://my-life-website.onrender.com/api/aboutpage");
+        const res = await axios.get(`${API_BASE_URL}/api/aboutpage`);
         setContent(res.data.data);
       } catch (error) {
         console.error("Error fetching about content:", error);
