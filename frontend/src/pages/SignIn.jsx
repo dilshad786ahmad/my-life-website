@@ -272,7 +272,7 @@ export default function SignIn() {
                   onSuccess={handleGoogleSuccess}
                   onError={handleGoogleError}
                   ux_mode="redirect"
-                  login_uri="https://my-life-website.onrender.com/api/auth/google"
+                  login_uri={window.location.hostname === "localhost" ? "http://localhost:5000/api/auth/google" : "https://my-life-website.onrender.com/api/auth/google"}
                   theme="filled_black"
                   shape="pill"
                   size="large"
