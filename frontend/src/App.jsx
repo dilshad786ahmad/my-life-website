@@ -92,6 +92,7 @@ function App() {
           <Route path="/team/:id" element={<TeamDetails />} />
           <Route path="/service_details/:serviceId" element={<ServiceDetails />} />
 
+
           {/* --- Protected Admin Dashboard Routes --- */}
           <Route path="/admin" element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>} />
           <Route path="/admin/my/home" element={<ProtectedRoute><AdminHome /></ProtectedRoute>} />

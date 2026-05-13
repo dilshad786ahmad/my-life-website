@@ -28,6 +28,7 @@ app.use("/uploads", express.static("uploads"));
 // ✅ Routes import
 const authRoutes = require("./routes/authRoutes.js");
 
+
 // ✅Authetications Routes use
 app.use("/api/auth", authRoutes);
 

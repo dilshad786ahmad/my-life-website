@@ -4,5 +4,5 @@
 //  cherck
 export const API_BASE_URL = window.location.hostname === "localhost"
     ? "http://localhost:5000"
-    : "https://my-life-website-cjdr.vercel.app";
+    : "http://localhost:5173";
     
