@@ -52,7 +52,7 @@ export default function SignIn() {
   const handleGoogleSuccess = async (credentialResponse) => {
     try {
       const res = await axios.post(
-        `${API_BASE_URL}/signin`,
+        `${API_BASE_URL}/api/auth/google`,
         { credential: credentialResponse.credential },
         { withCredentials: true }
       );

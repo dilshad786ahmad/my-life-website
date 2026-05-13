@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "../context/ThemeContext";
 import { CardSkeleton, HeroStackSkeleton, SkeletonBase } from "../components/Skeleton";
 import { API_BASE_URL } from "../apiConfig";
-
+//  check kr rha hun pura push hua hai ki nhi
 const IconMap = { Cloud, Lock, BarChart3, Box, Layout };
 
 const DynamicIcon = ({ name, className }) => {

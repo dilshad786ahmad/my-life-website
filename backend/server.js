@@ -6,6 +6,7 @@ const cookieParser = require('cookie-parser');
 
 // update for vercel deployment 
 //  secound updated
+//  check kr rha hun pura puch hua hai ki nhi
 
 const app = express();
 app.set('trust proxy', 1);
