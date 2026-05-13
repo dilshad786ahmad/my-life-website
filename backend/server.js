@@ -5,6 +5,7 @@ const mongodbConnect = require("./Database/db");
 const cookieParser = require('cookie-parser');
 
 const app = express();
+app.set('trust proxy', 1);
 
 // ✅ Middlewares
 // app.use(cors());

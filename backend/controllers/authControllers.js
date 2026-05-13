@@ -216,8 +216,8 @@ exports.signin = async (req, res) => {
         const cookieOptions = {
             expires: new Date(Date.now() + 2 * 24 * 60 * 60 * 1000), // 2 din (Token ki expiry se match karein)
             httpOnly: true, // Security: Frontend JS isse read nahi kar payegi
-            secure: process.env.NODE_ENV === "production", // Sirf HTTPS par kaam karega production mein
-            sameSite: "strict" // CSRF attacks se bachata hai
+            secure: true, // true karna zaroori hai sameSite 'none' ke liye
+            sameSite: "none" // cross-origin requests ke liye 'none'
         };
 
         // 6. Send Cookie and Response
@@ -251,8 +251,8 @@ exports.logout = async (req, res) => {
         res.cookie("token", "", { 
             expires: new Date(0),
             httpOnly: true,
-            secure: process.env.NODE_ENV === "production",
-            sameSite: "strict"
+            secure: true,
+            sameSite: "none"
         });
         res.status(200).json({ message: "Logged out successfully" });
     } catch (error) {
