@@ -28,19 +28,31 @@ const StaticText = ({ text, className }) => {
 };
 
 export default function Home() {
-  const [content, setContent] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [content, setContent] = useState(() => {
+    try {
+      const cached = localStorage.getItem('homepageContent');
+      return cached ? JSON.parse(cached) : null;
+    } catch {
+      return null;
+    }
+  });
+  const [loading, setLoading] = useState(() => {
+    return localStorage.getItem('homepageContent') ? false : true;
+  });
   const [index, setIndex] = useState(0);
   const { user } = useAuth(); 
   const { isDarkMode } = useTheme();
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         const res = await axios.get("https://my-life-website.onrender.com/api/homepage");
         setContent(res.data.data);
+        localStorage.setItem('homepageContent', JSON.stringify(res.data.data));
         setLoading(false);
       } catch (error) {
         console.error("Error fetching home content:", error);
+        setLoading(false);
       }
     };
     fetchData();
@@ -122,9 +134,9 @@ export default function Home() {
             </div>
 
             {loading ? (
-              <div className="space-y-4 mb-6">
-                <SkeletonBase className="h-12 md:h-16 rounded-2xl w-3/4" />
-                <SkeletonBase className="h-12 md:h-16 rounded-2xl w-1/2" />
+              <div className="space-y-4 mb-8">
+                <SkeletonBase className="h-[40px] md:h-[48px] lg:h-[60px] rounded-2xl w-3/4" />
+                <SkeletonBase className="h-[40px] md:h-[48px] lg:h-[60px] rounded-2xl w-1/2" />
               </div>
             ) : (
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-gray-500 mb-8 tracking-tight leading-[1.1]">

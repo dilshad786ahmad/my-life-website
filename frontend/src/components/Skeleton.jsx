@@ -74,11 +74,11 @@ export const HeroSkeleton = () => (
 );
 
 export const HeroStackSkeleton = () => (
-  <div className="relative w-full max-w-[260px] md:max-w-[450px] aspect-[4/5] md:aspect-auto md:h-full">
+  <>
     <SkeletonBase className="absolute inset-0 rounded-[2.5rem] md:rounded-[3.5rem] bg-white/5 border border-white/10" />
     <div className="absolute inset-0 translate-x-4 translate-y-4 bg-white/5 border border-white/10 rounded-[3.5rem] -z-10 opacity-50"></div>
     <div className="absolute inset-0 translate-x-8 translate-y-8 bg-white/[0.02] border border-white/10 rounded-[3.5rem] -z-20 opacity-30"></div>
-  </div>
+  </>
 );
 
 export default SkeletonBase;
