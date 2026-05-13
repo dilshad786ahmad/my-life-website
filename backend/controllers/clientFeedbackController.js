@@ -45,7 +45,7 @@ exports.getMyFeedback = async (req, res) => {
     const feedback = await ClientFeedback.findOne({ user: userId });
     
     if (!feedback) {
-      return res.status(404).json({ success: false, message: "No feedback found for this user" });
+      return res.status(200).json({ success: true, data: null, message: "No feedback found for this user" });
     }
     
     res.status(200).json({ success: true, data: feedback });
