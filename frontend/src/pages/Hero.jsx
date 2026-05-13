@@ -88,7 +88,9 @@ export default function Home() {
   useEffect(() => {
     if (images.length === 0) return;
     const interval = setInterval(() => {
-      setIndex((prev) => (prev + 1) % images.length);
+      if (!document.hidden) {
+        setIndex((prev) => (prev + 1) % images.length);
+      }
     }, 4000); 
 
     return () => clearInterval(interval);
@@ -103,7 +105,9 @@ export default function Home() {
   useEffect(() => {
     if (cardImages.length <= 1) return;
     const interval = setInterval(() => {
-      setCardIndex((prev) => (prev + 1) % cardImages.length);
+      if (!document.hidden) {
+        setCardIndex((prev) => (prev + 1) % cardImages.length);
+      }
     }, 5000);
     return () => clearInterval(interval);
   }, [cardImages]);
